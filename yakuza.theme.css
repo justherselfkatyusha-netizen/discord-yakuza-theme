@@ -28,6 +28,10 @@
    BACKGROUND + ANIMATION
    ========================================================= */
 
+/* =========================================================
+   BACKGROUND - RESTORED DRAGON
+   ========================================================= */
+
 html,
 body,
 #app-mount {
@@ -35,50 +39,38 @@ body,
   min-height: 100% !important;
 }
 
+body {
+  background: transparent !important;
+}
+
 #app-mount {
   position: relative !important;
   isolation: isolate !important;
 }
 
-@keyframes slowDragonDrift {
-  0% {
-    background-position: 50% 50%;
-    transform: scale(1);
-  }
-  50% {
-    background-position: 52% 48%;
-    transform: scale(1.02);
-  }
-  100% {
-    background-position: 50% 50%;
-    transform: scale(1);
-  }
-}
-
-body::before {
+/* actual wallpaper */
+#app-mount::before {
   content: "";
   position: fixed;
   inset: 0;
   background:
-    linear-gradient(rgba(0, 0, 0, 0.30), rgba(0, 0, 0, 0.65)),
-    var(--bg-image) center / cover no-repeat;
+    linear-gradient(rgba(0, 0, 0, 0.34), rgba(0, 0, 0, 0.66)),
+    var(--bg-image) center / cover no-repeat !important;
   pointer-events: none;
   z-index: -2;
-  animation: slowDragonDrift 35s ease-in-out infinite;
-  will-change: background-position, transform;
 }
 
-body::after {
+/* red tint */
+#app-mount::after {
   content: "";
   position: fixed;
   inset: 0;
   background:
-    radial-gradient(circle at 50% 30%, rgba(120, 0, 0, 0.10), transparent 36%),
-    linear-gradient(180deg, rgba(20, 0, 0, 0.05), rgba(0, 0, 0, 0.20));
+    radial-gradient(circle at 50% 30%, rgba(120, 0, 0, 0.06), transparent 34%),
+    linear-gradient(180deg, rgba(20, 0, 0, 0.04), rgba(0, 0, 0, 0.14));
   pointer-events: none;
   z-index: -1;
 }
-
 /* =========================================================
    REMOVE DEFAULT BACKGROUNDS
    ========================================================= */
