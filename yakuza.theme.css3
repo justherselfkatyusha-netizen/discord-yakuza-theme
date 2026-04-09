@@ -1,42 +1,51 @@
 :root {
-  --yakuza-red: rgba(200, 20, 20, 0.95);
-  --yakuza-red-soft: rgba(255, 40, 40, 0.35);
-  --glass-dark: rgba(10, 10, 10, 0.45);
-  --glass-darker: rgba(5, 5, 5, 0.58);
-  --text-main: #f5f5f5;
-  --text-muted-custom: #c9c9c9;
+  --bg-image: url("https://media.discordapp.net/attachments/1404619877016408229/1491746595660759090/dragon.jpg");
+
+  --yakuza-red-dark: #6e0f0f;
+  --yakuza-red-darker: #4d0909;
+  --yakuza-red-lightglass: rgba(120, 30, 30, 0.18);
+  --yakuza-red-lightglass-2: rgba(140, 35, 35, 0.22);
+
+  --text-main: #f3eeee;
+  --text-muted-custom: #c9b4b4;
+  --name-red: #7b1818;
+
+  --panel-border: rgba(180, 70, 70, 0.18);
+  --panel-shadow: rgba(0, 0, 0, 0.32);
 }
 
-/* FORCE THE WALLPAPER TO EXIST */
+/* =========================
+   FORCE BACKGROUND
+========================= */
+
 html,
-body {
-  background: url("https://media.discordapp.net/attachments/1404619877016408229/1491746595660759090/dragon.jpg") center/cover no-repeat fixed !important;
-  background-color: transparent !important;
-  min-height: 100vh !important;
-}
-
-/* REMOVE DISCORD'S SOLID BACKGROUNDS */
 body,
-.theme-dark,
+#app-mount,
 .appMount-2yBXZl,
+.app-2CXKsg,
 .bg-1QIAus,
 .layer-86YKbF,
-.app-2CXKsg,
-.container-2cd8Mz,
-.themed-Hp1KC_,
-.wrapper-1_HaEi,
 .base-2jDfDU {
+  background: var(--bg-image) center/cover no-repeat fixed !important;
+  background-color: transparent !important;
+}
+
+/* kill most default solid backgrounds without nuking everything */
+.theme-dark,
+.visual-refresh,
+.layers-OrUESM,
+.container__133bf,
+.wrapper__9916c,
+.bg__12180,
+.contentRegion__08eba,
+.sidebarRegionScroller__1fa7e,
+.standardSidebarView__12528 {
   background: transparent !important;
   background-color: transparent !important;
 }
 
-/* MAIN WALLPAPER HOLDER */
-.appMount-2yBXZl {
-  background: url("https://media.discordapp.net/attachments/1404619877016408229/1491746595660759090/dragon.jpg") center/cover no-repeat fixed !important;
-  position: relative !important;
-}
-
-/* DARK OVERLAY FOR READABILITY */
+/* readability overlay */
+#app-mount::before,
 .appMount-2yBXZl::before {
   content: "";
   position: fixed;
@@ -44,14 +53,14 @@ body,
   background:
     linear-gradient(
       180deg,
-      rgba(0, 0, 0, 0.45),
-      rgba(0, 0, 0, 0.72)
+      rgba(0, 0, 0, 0.32),
+      rgba(0, 0, 0, 0.52)
     );
   pointer-events: none;
   z-index: 0;
 }
 
-/* KEEP UI ABOVE OVERLAY */
+/* make sure UI sits above overlay */
 .app-2CXKsg,
 .bg-1QIAus,
 .layer-86YKbF,
@@ -65,7 +74,11 @@ body,
   z-index: 1;
 }
 
-/* GLASS PANELS */
+/* =========================
+   GLASS PANELS
+   slightly transparent lighter red
+========================= */
+
 .sidebar-1tnWFu,
 .container-1NXEtd,
 .chat-2ZfjoI,
@@ -83,124 +96,220 @@ body,
 .peopleColumn-1wMU14,
 .standardSidebarView-E9Pc3j,
 .contentRegion-3HkfJJ,
-.sidebarRegion-1VBisG {
-  background: var(--glass-dark) !important;
-  backdrop-filter: blur(10px) !important;
-  -webkit-backdrop-filter: blur(10px) !important;
-  border: 1px solid rgba(255, 255, 255, 0.06) !important;
-  box-shadow:
-    0 0 18px rgba(0, 0, 0, 0.35),
-    0 0 18px rgba(255, 30, 30, 0.08) !important;
-}
-
-/* TOP BAR / HEADER */
-.title-31SJ6t,
-.container-ZMc96U,
-.header-3OsQeK,
-.children-3xh0VB {
-  background: rgba(15, 15, 15, 0.35) !important;
-  backdrop-filter: blur(8px) !important;
-  -webkit-backdrop-filter: blur(8px) !important;
-}
-
-/* MESSAGE INPUT */
+.sidebarRegion-1VBisG,
 .form-3gdLxP,
 .channelTextArea-1FufC0,
 .scrollableContainer-15eg7h {
-  background: rgba(15, 15, 15, 0.52) !important;
+  background: linear-gradient(
+    180deg,
+    var(--yakuza-red-lightglass),
+    var(--yakuza-red-lightglass-2)
+  ) !important;
+  backdrop-filter: blur(10px) saturate(110%) !important;
+  -webkit-backdrop-filter: blur(10px) saturate(110%) !important;
+  border: 1px solid var(--panel-border) !important;
+  box-shadow:
+    0 0 12px var(--panel-shadow),
+    0 0 10px rgba(80, 0, 0, 0.10) !important;
+}
+
+/* slightly deeper top/header bars */
+.title-31SJ6t,
+.header-3OsQeK,
+.children-3xh0VB {
+  background: rgba(90, 18, 18, 0.20) !important;
   backdrop-filter: blur(8px) !important;
   -webkit-backdrop-filter: blur(8px) !important;
-  border: 1px solid rgba(255, 50, 50, 0.20) !important;
-  box-shadow: 0 0 12px rgba(255, 0, 0, 0.12) !important;
+  border-bottom: 1px solid rgba(170, 70, 70, 0.12) !important;
 }
 
-/* RED GLOW ACCENTS */
-.button-12Fmur,
-.lookFilled-yCfaCM,
-.item-2LIpTv,
-.selected-1Drb7Z,
-.modeSelected-3DmyhH,
-.tabBarItem-30Te4-,
-.interactiveSelected-29CP8y,
-.clickable-28SzVr:hover,
-.wrapper-NhbLHG:hover,
-.channel-1Shao0:hover {
-  box-shadow:
-    0 0 8px rgba(255, 25, 25, 0.35),
-    0 0 18px rgba(255, 0, 0, 0.18) !important;
-}
+/* =========================
+   DARKER RED NAMES
+========================= */
 
-/* SELECTED CHANNEL / TAB */
-.modeSelected-3DmyhH .name-3Uvkvr,
-.interactiveSelected-29CP8y,
-.selected-1Drb7Z {
-  color: #fff !important;
-  text-shadow: 0 0 8px rgba(255, 40, 40, 0.55) !important;
-  background: rgba(120, 0, 0, 0.22) !important;
-  border-left: 2px solid var(--yakuza-red) !important;
-}
-
-/* BUTTONS */
-.lookFilled-yCfaCM {
-  background: linear-gradient(180deg, rgba(170, 18, 18, 0.95), rgba(95, 0, 0, 0.95)) !important;
-  color: white !important;
-  border: 1px solid rgba(255, 120, 120, 0.18) !important;
-}
-
-/* LINKS / ICONS */
-a,
-.anchor-1MIwyf,
-.contents-3ca1mk,
-.icon-2xnN2Y,
-.icon-1Y-Gpt {
-  color: #ff5a5a !important;
-}
-
-/* NORMAL TEXT */
 .username-h_Y3Us,
 .username-1A8OIy,
 .name-3Uvkvr,
 .title-17SveM,
+.headerText-2z4IhQ,
+.nickname-3P1RuO,
+.memberInner-2CPc3V,
+.member-2gU6Ar .name-3Vmqxm,
+.layout-1qmrhw .name-3Vmqxm,
+.markup-eYLPri strong {
+  color: var(--name-red) !important;
+  text-shadow: 0 0 3px rgba(0, 0, 0, 0.18) !important;
+}
+
+/* normal readable text */
 .defaultColor-1EVLSt,
-.markup-eYLPri {
+.markup-eYLPri,
+.contents-3ca1mk,
+.topic-11NuQZ,
+.subtitle-3PyFgf {
   color: var(--text-main) !important;
 }
 
-/* MUTED TEXT */
-.subtitle-3PyFgf,
 .description-22d6ux,
 .text-sm-normal-AEQz4v,
-.text-xs-normal-3SiVjE {
+.text-xs-normal-3SiVjE,
+.channelInfo-3jN1ay,
+.repliedTextPreview-1bvxun {
   color: var(--text-muted-custom) !important;
 }
 
-/* MESSAGE HOVER */
-.message-2CShn3:hover {
-  background: rgba(255, 255, 255, 0.03) !important;
-  box-shadow: inset 2px 0 0 rgba(255, 50, 50, 0.22) !important;
+/* =========================
+   CHANNELS / SELECTED ITEMS
+========================= */
+
+.modeSelected-3DmyhH,
+.interactiveSelected-29CP8y,
+.selected-1Drb7Z {
+  background: rgba(90, 10, 10, 0.26) !important;
+  border-left: 2px solid var(--yakuza-red-dark) !important;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.22) !important;
 }
 
-/* MEMBER LIST HOVER */
+.modeSelected-3DmyhH .name-3Uvkvr,
+.interactiveSelected-29CP8y .name-3Uvkvr,
+.selected-1Drb7Z .name-3Uvkvr {
+  color: #8a1616 !important;
+}
+
+/* =========================
+   HOVER GLOW - BLACK
+   "mouse pointer position glow black"
+========================= */
+
+button:hover,
+[role="button"]:hover,
+.clickable-28SzVr:hover,
+.channel-1Shao0:hover,
 .member-2gU6Ar:hover,
-.layout-1qmrhw:hover {
-  background: rgba(255, 255, 255, 0.04) !important;
-  box-shadow: inset 2px 0 0 rgba(255, 40, 40, 0.20) !important;
-}
-
-/* SERVER ICON HOVER GLOW */
-.wrapper-28eC3z:hover,
-.childWrapper-1j_1ub:hover {
+.layout-1qmrhw:hover,
+.wrapper-NhbLHG:hover,
+.interactive-1vLZ_I:hover,
+.item-2LIpTv:hover,
+.message-2CShn3:hover {
   box-shadow:
-    0 0 10px rgba(255, 30, 30, 0.35),
-    0 0 20px rgba(255, 0, 0, 0.18) !important;
+    0 0 0 1px rgba(0, 0, 0, 0.10),
+    0 0 12px rgba(0, 0, 0, 0.38) !important;
 }
 
-/* SCROLLBAR */
+/* =========================
+   BUTTONS
+========================= */
+
+.button-12Fmur,
+.lookFilled-yCfaCM {
+  background: linear-gradient(
+    180deg,
+    rgba(120, 18, 18, 0.95),
+    rgba(70, 8, 8, 0.95)
+  ) !important;
+  color: #f6eeee !important;
+  border: 1px solid rgba(150, 50, 50, 0.20) !important;
+}
+
+.button-12Fmur:hover,
+.lookFilled-yCfaCM:hover {
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.14),
+    0 0 14px rgba(0, 0, 0, 0.42) !important;
+}
+
+/* links/icons */
+a,
+.anchor-1MIwyf,
+.icon-2xnN2Y,
+.icon-1Y-Gpt {
+  color: #8f1919 !important;
+}
+
+/* =========================
+   MESSAGE INPUT
+========================= */
+
+.scrollableContainer-15eg7h,
+.channelTextArea-1FufC0 {
+  background: rgba(115, 28, 28, 0.20) !important;
+  border: 1px solid rgba(155, 60, 60, 0.16) !important;
+}
+
+/* =========================
+   THINNER DARKER RED SCROLLBAR
+========================= */
+
+::-webkit-scrollbar {
+  width: 7px !important;
+  height: 7px !important;
+}
+
 ::-webkit-scrollbar-thumb {
-  background: rgba(170, 20, 20, 0.65) !important;
-  border-radius: 10px !important;
+  background: linear-gradient(
+    180deg,
+    #5a0b0b,
+    #3b0707
+  ) !important;
+  border-radius: 999px !important;
+  border: none !important;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    180deg,
+    #6b0d0d,
+    #470808
+  ) !important;
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.18) !important;
+  background: rgba(25, 0, 0, 0.18) !important;
+  border-radius: 999px !important;
+}
+
+/* firefox fallback */
+* {
+  scrollbar-width: thin !important;
+  scrollbar-color: #4a0909 rgba(25, 0, 0, 0.18) !important;
+}
+
+/* =========================
+   SERVER ICONS / PANELS
+========================= */
+
+.wrapper-28eC3z:hover,
+.childWrapper-1j_1ub:hover {
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.10),
+    0 0 12px rgba(0, 0, 0, 0.35) !important;
+}
+
+/* =========================
+   EXTRA FIXES FOR BACKGROUND BLEED
+========================= */
+
+.chatContent-3KubbW,
+.messagesWrapper-RpOMA3,
+.content-1SgpWY,
+.container-36u7Lw,
+.membersWrap-3NUR2t,
+.privateChannels-oVe7HL,
+.scroller-WSmht3,
+.scrollerBase-_bVAAt,
+.container__2637a,
+.contentRegionScroller__86c79,
+.sidebarRegionScroller__1fa7e {
+  background: transparent !important;
+}
+
+/* make message area slightly clearer without killing background */
+.message-2CShn3 {
+  background: transparent !important;
+}
+
+/* soft black hover line */
+.message-2CShn3:hover {
+  background: rgba(255, 255, 255, 0.02) !important;
+  box-shadow: inset 2px 0 0 rgba(0, 0, 0, 0.35) !important;
 }
