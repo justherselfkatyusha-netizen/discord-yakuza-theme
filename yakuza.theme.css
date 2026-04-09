@@ -7,25 +7,25 @@
   --red-dark: #5e0d0d;
   --red-mid: #741414;
 
-  --red-faint: rgba(110, 16, 16, 0.12);
-  --red-faint-2: rgba(130, 20, 20, 0.16);
+  --red-faint: rgba(110, 16, 16, 0.08);
+  --red-faint-2: rgba(130, 20, 20, 0.12);
 
-  --panel-border: rgba(170, 60, 60, 0.14);
-  --panel-shadow: rgba(0, 0, 0, 0.34);
+  --panel-border: rgba(170, 60, 60, 0.10);
+  --panel-shadow: rgba(0, 0, 0, 0.20);
 
   --text-main: #f2ebeb;
   --text-muted: #ccbaba;
 
-  --deep-ui-red: rgba(28, 3, 3, 0.94);
-  --deep-ui-red-2: rgba(40, 5, 5, 0.90);
+  --deep-ui-red: rgba(28, 3, 3, 0.96);
+  --deep-ui-red-2: rgba(40, 5, 5, 0.92);
 
   --name-crimson: #2a0506;
   --name-crimson-2: #3a090b;
-  --name-shadow: rgba(0, 0, 0, 0.60);
+  --name-shadow: rgba(0, 0, 0, 0.45);
 }
 
 /* =========================================================
-   BACKGROUND + ANIMATION
+   BACKGROUND
    ========================================================= */
 
 html,
@@ -40,32 +40,16 @@ body,
   isolation: isolate !important;
 }
 
-@keyframes slowDragonDrift {
-  0% {
-    background-position: 50% 50%;
-    transform: scale(1);
-  }
-  50% {
-    background-position: 52% 48%;
-    transform: scale(1.02);
-  }
-  100% {
-    background-position: 50% 50%;
-    transform: scale(1);
-  }
-}
-
+/* removed animation for performance */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   background:
-    linear-gradient(rgba(0, 0, 0, 0.30), rgba(0, 0, 0, 0.65)),
+    linear-gradient(rgba(0, 0, 0, 0.34), rgba(0, 0, 0, 0.66)),
     var(--bg-image) center / cover no-repeat;
   pointer-events: none;
   z-index: -2;
-  animation: slowDragonDrift 35s ease-in-out infinite;
-  will-change: background-position, transform;
 }
 
 body::after {
@@ -73,8 +57,8 @@ body::after {
   position: fixed;
   inset: 0;
   background:
-    radial-gradient(circle at 50% 30%, rgba(120, 0, 0, 0.10), transparent 36%),
-    linear-gradient(180deg, rgba(20, 0, 0, 0.05), rgba(0, 0, 0, 0.20));
+    radial-gradient(circle at 50% 30%, rgba(120, 0, 0, 0.06), transparent 34%),
+    linear-gradient(180deg, rgba(20, 0, 0, 0.04), rgba(0, 0, 0, 0.14));
   pointer-events: none;
   z-index: -1;
 }
@@ -83,28 +67,24 @@ body::after {
    REMOVE DEFAULT BACKGROUNDS
    ========================================================= */
 
-[class*="appMount"],
-[class*="app_"],
-[class*="bg_"],
-[class*="layer_"],
-[class*="base_"],
-[class*="container_"],
-[class*="chat_"],
-[class*="content_"],
-[class*="membersWrap_"],
-[class*="members_"],
-[class*="sidebar_"],
-[class*="peopleColumn_"],
-[class*="nowPlayingColumn_"],
-[class*="standardSidebarView_"],
-[class*="contentRegion_"],
-[class*="sidebarRegion_"],
-[class*="scroller_"],
-[class*="privateChannels_"],
-[class*="messagesWrapper_"],
-[class*="chatContent_"],
-[class*="pageWrapper_"],
-[class*="applicationStore_"] {
+.appMount-2yBXZl,
+.app-2CXKsg,
+.bg-1QIAus,
+.layer-86YKbF,
+.base-2jDfDU,
+.chat-2ZfjoI,
+.container-ZMc96U,
+.membersWrap-3NUR2t,
+.standardSidebarView-E9Pc3j,
+.contentRegion-3HkfJJ,
+.sidebarRegion-1VBisG,
+.privateChannels-oVe7HL,
+.chatContent-3KubbW,
+.messagesWrapper-RpOMA3,
+.peopleColumn-1wMU14,
+.nowPlayingColumn-1eCBCN,
+.applicationStore-2nk7Lo,
+.pageWrapper-2PwDoS {
   background-color: transparent !important;
 }
 
@@ -126,35 +106,23 @@ body::after {
 .container-1NXEtd,
 .chat-2ZfjoI,
 .container-ZMc96U,
-.members-3WRCEx,
 .membersWrap-3NUR2t,
 .panels-3wFtMD,
-.container-2o3qEW,
-.content-1jQy2l,
-.container-1eFtFS,
-.applicationStore-2nk7Lo,
-.pageWrapper-2PwDoS,
-.scroller-22Maiq,
-.nowPlayingColumn-1eCBCN,
 .peopleColumn-1wMU14,
+.nowPlayingColumn-1eCBCN,
 .standardSidebarView-E9Pc3j,
 .contentRegion-3HkfJJ,
 .sidebarRegion-1VBisG,
-.form-3gdLxP,
-.container__2637a,
-.contentRegionScroller__86c79,
-.sidebarRegionScroller__1fa7e {
+.form-3gdLxP {
   background: linear-gradient(
     180deg,
     var(--red-faint),
     var(--red-faint-2)
   ) !important;
-  backdrop-filter: blur(10px) saturate(112%) !important;
-  -webkit-backdrop-filter: blur(10px) saturate(112%) !important;
   border: 1px solid var(--panel-border) !important;
-  box-shadow:
-    0 0 14px var(--panel-shadow),
-    0 0 10px rgba(85, 0, 0, 0.08) !important;
+  box-shadow: 0 0 8px var(--panel-shadow) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
 }
 
 /* =========================================================
@@ -165,21 +133,10 @@ body::after {
 .header-3OsQeK,
 .children-3xh0VB,
 .container-ZMc96U.themed-Hp1KC_ {
-  background: rgba(95, 18, 18, 0.14) !important;
-  backdrop-filter: blur(8px) !important;
-  -webkit-backdrop-filter: blur(8px) !important;
-  border-bottom: 1px solid rgba(170, 70, 70, 0.10) !important;
-}
-
-/* =========================================================
-   CHAT-ONLY BLUR
-   ========================================================= */
-
-.chatContent-3KubbW,
-.messagesWrapper-RpOMA3 {
-  backdrop-filter: blur(2px) !important;
-  -webkit-backdrop-filter: blur(2px) !important;
-  background: transparent !important;
+  background: rgba(95, 18, 18, 0.10) !important;
+  border-bottom: 1px solid rgba(170, 70, 70, 0.08) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
 }
 
 /* =========================================================
@@ -195,7 +152,7 @@ body::after {
     var(--deep-ui-red),
     var(--deep-ui-red-2)
   ) !important;
-  border-right: 1px solid rgba(120, 35, 35, 0.14) !important;
+  border-right: 1px solid rgba(120, 35, 35, 0.10) !important;
 }
 
 .itemsContainer_ef3116,
@@ -231,58 +188,29 @@ a,
 }
 
 /* =========================================================
-   NAMES - BROADER / STRONGER FIX
+   NAMES
    ========================================================= */
 
-/* general username/name targeting */
 [class*="username"],
 [class*="name"],
 [class*="nickname"],
 [class*="headerText"],
 [class*="userTag"],
 [class*="member"] [class*="name"],
-[class*="layout"] [class*="name"],
-[class*="memberInner"] [class*="name"],
-[class*="title"] [class*="name"] {
+[class*="layout"] [class*="name"] {
   color: var(--name-crimson) !important;
-  text-shadow:
-    0 1px 0 var(--name-shadow),
-    0 0 3px rgba(90, 0, 0, 0.14) !important;
+  text-shadow: 0 1px 0 var(--name-shadow) !important;
 }
 
-/* specific older/current Discord classes for extra safety */
-.username-h_Y3Us,
-.username-1A8OIy,
-.name-3Uvkvr,
-.title-17SveM,
-.headerText-2z4IhQ,
-.nickname-3P1RuO,
-.memberInner-2CPc3V,
-.member-2gU6Ar .name-3Vmqxm,
-.layout-1qmrhw .name-3Vmqxm,
-.markup-eYLPri strong {
-  color: var(--name-crimson) !important;
-  text-shadow:
-    0 1px 0 var(--name-shadow),
-    0 0 3px rgba(90, 0, 0, 0.14) !important;
-}
-
-/* selected entries slightly brighter */
-.modeSelected-3DmyhH .name-3Uvkvr,
-.interactiveSelected-29CP8y .name-3Uvkvr,
-.selected-1Drb7Z .name-3Uvkvr,
 [class*="selected"] [class*="name"],
 [class*="interactiveSelected"] [class*="name"],
 [class*="modeSelected"] [class*="name"] {
   color: var(--name-crimson-2) !important;
 }
 
-/* keep colored role usernames from becoming unreadable */
 span[style*="color"] {
-  filter: brightness(0.72) saturate(1.05) !important;
-  text-shadow:
-    0 1px 0 rgba(0, 0, 0, 0.55),
-    0 0 3px rgba(0, 0, 0, 0.10) !important;
+  filter: brightness(0.75) saturate(1.02) !important;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.45) !important;
 }
 
 /* =========================================================
@@ -297,23 +225,21 @@ span[style*="color"] {
 [class*="interactiveSelected"] {
   background: linear-gradient(
     90deg,
-    rgba(80, 8, 8, 0.24),
-    rgba(45, 4, 4, 0.14)
+    rgba(80, 8, 8, 0.18),
+    rgba(45, 4, 4, 0.10)
   ) !important;
   border-left: 2px solid var(--red-dark) !important;
-  box-shadow:
-    0 0 10px rgba(0, 0, 0, 0.22),
-    0 0 10px rgba(100, 0, 0, 0.10) !important;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.14) !important;
 }
 
 .channel-1Shao0:hover,
 .clickable-28SzVr:hover,
 .interactive-1vLZ_I:hover {
-  background: rgba(65, 8, 8, 0.16) !important;
+  background: rgba(65, 8, 8, 0.10) !important;
 }
 
 /* =========================================================
-   HOVER GLOW
+   LIGHTER HOVER GLOW
    ========================================================= */
 
 button:hover,
@@ -330,25 +256,16 @@ button:hover,
 .childWrapper-1j_1ub:hover,
 .listItemWrapper__91816:hover,
 .link__95dc0:hover {
-  box-shadow:
-    0 0 0 1px rgba(0, 0, 0, 0.12),
-    0 0 14px rgba(0, 0, 0, 0.34),
-    0 0 24px rgba(0, 0, 0, 0.16) !important;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.18) !important;
   transition:
-    box-shadow 0.18s ease,
-    background 0.18s ease !important;
+    box-shadow 0.14s ease,
+    background 0.14s ease !important;
 }
 
 .message-2CShn3:hover,
 [class*="message"]:hover {
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0.02),
-    rgba(90, 0, 0, 0.04)
-  ) !important;
-  box-shadow:
-    inset 2px 0 0 rgba(0, 0, 0, 0.40),
-    0 0 14px rgba(0, 0, 0, 0.18) !important;
+  background: rgba(255, 255, 255, 0.015) !important;
+  box-shadow: inset 2px 0 0 rgba(0, 0, 0, 0.24) !important;
 }
 
 /* =========================================================
@@ -359,27 +276,26 @@ button:hover,
 .lookFilled-yCfaCM {
   background: linear-gradient(
     180deg,
-    rgba(105, 16, 16, 0.96),
-    rgba(58, 7, 7, 0.96)
+    rgba(105, 16, 16, 0.94),
+    rgba(58, 7, 7, 0.94)
   ) !important;
   color: #f5efef !important;
-  border: 1px solid rgba(150, 50, 50, 0.18) !important;
+  border: 1px solid rgba(150, 50, 50, 0.14) !important;
 }
 
 .button-12Fmur:hover,
 .lookFilled-yCfaCM:hover {
   background: linear-gradient(
     180deg,
-    rgba(118, 18, 18, 0.98),
-    rgba(68, 8, 8, 0.98)
+    rgba(118, 18, 18, 0.96),
+    rgba(68, 8, 8, 0.96)
   ) !important;
 }
 
 /* =========================================================
-   INPUT AREA - NUCLEAR FIX
+   INPUT AREA - PERFORMANCE FRIENDLY
    ========================================================= */
 
-/* outer shell */
 .channelTextArea-1FufC0,
 .scrollableContainer-15eg7h,
 .themedBackground-1aP0xJ,
@@ -387,40 +303,32 @@ button:hover,
 .base-3bcbY3,
 [class*="channelTextArea"],
 [class*="scrollableContainer"],
-[class*="themedBackground"],
-[class*="attachButtonInner"],
-[class*="inner"] {
+[class*="themedBackground"] {
   background: linear-gradient(
     180deg,
     var(--deep-ui-red),
     var(--deep-ui-red-2)
   ) !important;
-  border-color: rgba(120, 35, 35, 0.22) !important;
+  border-color: rgba(120, 35, 35, 0.18) !important;
 }
 
-/* actual input container emphasis */
 .channelTextArea-1FufC0,
 [class*="channelTextArea"] {
-  border: 1px solid rgba(120, 35, 35, 0.22) !important;
-  box-shadow:
-    0 0 0 1px rgba(0, 0, 0, 0.25),
-    0 0 14px rgba(0, 0, 0, 0.30) !important;
+  border: 1px solid rgba(120, 35, 35, 0.18) !important;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.18) !important;
   border-radius: 12px !important;
 }
 
-/* kill gray inner layers */
 .textArea__74543,
 .textAreaSlate__8f5a9,
 .editor__66464,
 [class*="textArea"],
 [class*="editor"],
 [class*="slateTextArea"],
-[class*="placeholder"],
 [class*="input"] {
   background: transparent !important;
 }
 
-/* kill child gray blocks */
 .channelTextArea-1FufC0 > div,
 .scrollableContainer-15eg7h > div,
 [class*="channelTextArea"] > div,
@@ -430,7 +338,6 @@ button:hover,
   background: transparent !important;
 }
 
-/* keep buttons inside bar from looking detached */
 [class*="channelTextArea"] button,
 [class*="channelTextArea"] [role="button"],
 .attachButton-_ACFSu,
@@ -438,16 +345,12 @@ button:hover,
   background: transparent !important;
 }
 
-/* focus state */
 .channelTextArea-1FufC0:focus-within,
 [class*="channelTextArea"]:focus-within {
-  border: 1px solid rgba(160, 40, 40, 0.38) !important;
-  box-shadow:
-    0 0 0 1px rgba(120, 20, 20, 0.42),
-    0 0 18px rgba(0, 0, 0, 0.35) !important;
+  border: 1px solid rgba(160, 40, 40, 0.26) !important;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.20) !important;
 }
 
-/* text in bar */
 .placeholder-1rCBhr,
 .slateTextArea-27tjG0,
 .fontSize16Padding-XoMpjI,
