@@ -6,21 +6,22 @@
   --red-darker: #4a0909;
   --red-dark: #5e0d0d;
   --red-mid: #741414;
-  --red-name: #6b1111;
-  --red-faint: rgba(110, 16, 16, 0.16);
-  --red-faint-2: rgba(130, 20, 20, 0.20);
-  --red-faint-3: rgba(150, 25, 25, 0.24);
+  --red-name: #661010;
 
-  --panel-border: rgba(170, 60, 60, 0.16);
+  --red-faint: rgba(110, 16, 16, 0.14);
+  --red-faint-2: rgba(130, 20, 20, 0.18);
+  --red-faint-3: rgba(150, 25, 25, 0.22);
+
+  --panel-border: rgba(170, 60, 60, 0.14);
   --panel-shadow: rgba(0, 0, 0, 0.34);
 
   --text-main: #f2ebeb;
   --text-muted: #ccbaba;
 }
 
-/* =========================
-   BACKGROUND FIX
-========================= */
+/* =========================================================
+   BASE BACKGROUND FIX
+   ========================================================= */
 
 html,
 body,
@@ -29,86 +30,102 @@ body,
 .app-2CXKsg,
 .bg-1QIAus,
 .layer-86YKbF,
-.base-2jDfDU {
-  background: var(--bg-image) center/cover no-repeat fixed !important;
-  background-color: #000 !important;
-}
-
-/* remove many solid backgrounds */
+.base-2jDfDU,
 .theme-dark,
 .visual-refresh,
-.layers-OrUESM,
-.container__133bf,
-.wrapper__9916c,
-.bg__12180,
-.contentRegion__08eba,
-.sidebarRegionScroller__1fa7e,
-.standardSidebarView__12528,
-.chat-2ZfjoI,
-.container-ZMc96U,
-.membersWrap-3NUR2t,
-.privateChannels-oVe7HL,
-.scroller-WSmht3,
-.scrollerBase-_bVAAt,
-.content-1SgpWY,
-.chatContent-3KubbW,
-.messagesWrapper-RpOMA3 {
-  background-color: transparent !important;
+.layers-OrUESM {
+  background: transparent !important;
 }
 
-/* cinematic dark overlay */
-#app-mount::before,
-.appMount-2yBXZl::before {
+/* real wallpaper layer */
+#app-mount::before {
   content: "";
   position: fixed;
   inset: 0;
   background:
-    radial-gradient(circle at 50% 35%, rgba(120, 0, 0, 0.08), transparent 35%),
-    linear-gradient(180deg, rgba(0, 0, 0, 0.28), rgba(0, 0, 0, 0.60));
+    linear-gradient(rgba(0, 0, 0, 0.34), rgba(0, 0, 0, 0.62)),
+    url("https://i.imgur.com/Q2qoq7L.jpeg") center/cover no-repeat fixed;
   pointer-events: none;
-  z-index: 0;
+  z-index: -2;
 }
 
-/* UI above overlay */
+/* cinematic overlay above wallpaper */
+#app-mount::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 30%, rgba(120, 0, 0, 0.10), transparent 36%),
+    linear-gradient(180deg, rgba(20, 0, 0, 0.06), rgba(0, 0, 0, 0.22));
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* make major app containers transparent so wallpaper shows through */
 .app-2CXKsg,
 .bg-1QIAus,
 .layer-86YKbF,
 .base-2jDfDU,
 .sidebar-1tnWFu,
 .chat-2ZfjoI,
-.membersWrap-3NUR2t,
 .container-ZMc96U,
-.standardSidebarView-E9Pc3j {
-  position: relative;
-  z-index: 1;
+.membersWrap-3NUR2t,
+.standardSidebarView-E9Pc3j,
+.contentRegion-3HkfJJ,
+.sidebarRegion-1VBisG,
+.container__133bf,
+.wrapper__9916c,
+.bg__12180,
+.privateChannels-oVe7HL,
+.content-1SgpWY,
+.chatContent-3KubbW,
+.messagesWrapper-RpOMA3,
+.contentRegionScroller__86c79,
+.sidebarRegionScroller__1fa7e,
+.container-36u7Lw,
+.applicationStore-2nk7Lo,
+.pageWrapper-2PwDoS,
+.nowPlayingColumn-1eCBCN,
+.peopleColumn-1wMU14 {
+  background: transparent !important;
 }
 
-/* =========================
+/* keep actual UI above the bg layers */
+#app-mount,
+.appMount-2yBXZl,
+.app-2CXKsg,
+.base-2jDfDU,
+.layer-86YKbF,
+.bg-1QIAus {
+  position: relative;
+  z-index: 0;
+}
+
+/* =========================================================
    FAINT RED AMBIENT ANIMATION
-========================= */
+   ========================================================= */
 
 @keyframes yakuzaRedPulse {
   0% {
     box-shadow:
-      0 0 10px rgba(90, 0, 0, 0.05),
-      0 0 18px rgba(0, 0, 0, 0.24);
+      0 0 10px rgba(90, 0, 0, 0.04),
+      0 0 18px rgba(0, 0, 0, 0.22);
   }
   50% {
     box-shadow:
-      0 0 16px rgba(130, 10, 10, 0.12),
+      0 0 18px rgba(130, 10, 10, 0.10),
       0 0 24px rgba(0, 0, 0, 0.34);
   }
   100% {
     box-shadow:
-      0 0 10px rgba(90, 0, 0, 0.05),
-      0 0 18px rgba(0, 0, 0, 0.24);
+      0 0 10px rgba(90, 0, 0, 0.04),
+      0 0 18px rgba(0, 0, 0, 0.22);
   }
 }
 
-/* =========================
+/* =========================================================
    GLASS PANELS
-   slightly transparent light red
-========================= */
+   ========================================================= */
 
 .sidebar-1tnWFu,
 .container-1NXEtd,
@@ -133,7 +150,8 @@ body,
 .scrollableContainer-15eg7h,
 .container__2637a,
 .contentRegionScroller__86c79,
-.sidebarRegionScroller__1fa7e {
+.sidebarRegionScroller__1fa7e,
+.container-36u7Lw {
   background: linear-gradient(
     180deg,
     var(--red-faint),
@@ -148,19 +166,20 @@ body,
   animation: yakuzaRedPulse 7s ease-in-out infinite !important;
 }
 
-/* headers / top bars */
+/* top bars / headers */
 .title-31SJ6t,
 .header-3OsQeK,
-.children-3xh0VB {
-  background: rgba(95, 18, 18, 0.18) !important;
+.children-3xh0VB,
+.container-ZMc96U.themed-Hp1KC_ {
+  background: rgba(95, 18, 18, 0.16) !important;
   backdrop-filter: blur(8px) !important;
   -webkit-backdrop-filter: blur(8px) !important;
   border-bottom: 1px solid rgba(170, 70, 70, 0.10) !important;
 }
 
-/* =========================
-   DARKER RED NAMES
-========================= */
+/* =========================================================
+   TEXT
+   ========================================================= */
 
 .username-h_Y3Us,
 .username-1A8OIy,
@@ -176,7 +195,6 @@ body,
   text-shadow: 0 0 3px rgba(0, 0, 0, 0.22) !important;
 }
 
-/* normal text */
 .defaultColor-1EVLSt,
 .markup-eYLPri,
 .contents-3ca1mk,
@@ -193,7 +211,6 @@ body,
   color: var(--text-muted) !important;
 }
 
-/* links/icons */
 a,
 .anchor-1MIwyf,
 .icon-2xnN2Y,
@@ -201,14 +218,14 @@ a,
   color: var(--red-mid) !important;
 }
 
-/* =========================
-   SELECTED CHANNELS / ITEMS
-========================= */
+/* =========================================================
+   SELECTED / HOVERED ITEMS
+   ========================================================= */
 
 .modeSelected-3DmyhH,
 .interactiveSelected-29CP8y,
 .selected-1Drb7Z {
-  background: rgba(80, 8, 8, 0.26) !important;
+  background: rgba(80, 8, 8, 0.24) !important;
   border-left: 2px solid var(--red-dark) !important;
   box-shadow:
     0 0 10px rgba(0, 0, 0, 0.22),
@@ -221,15 +238,15 @@ a,
   color: #861616 !important;
 }
 
-/* channel hover */
 .channel-1Shao0:hover,
-.clickable-28SzVr:hover {
-  background: rgba(65, 8, 8, 0.18) !important;
+.clickable-28SzVr:hover,
+.interactive-1vLZ_I:hover {
+  background: rgba(65, 8, 8, 0.16) !important;
 }
 
-/* =========================
-   MOUSE / HOVER BLACK GLOW
-========================= */
+/* =========================================================
+   BLACK GLOW HOVER EFFECT
+   ========================================================= */
 
 button:hover,
 [role="button"]:hover,
@@ -249,10 +266,11 @@ button:hover,
     0 0 0 1px rgba(0, 0, 0, 0.12),
     0 0 14px rgba(0, 0, 0, 0.34),
     0 0 24px rgba(0, 0, 0, 0.16) !important;
-  transition: box-shadow 0.18s ease, background 0.18s ease !important;
+  transition:
+    box-shadow 0.18s ease,
+    background 0.18s ease !important;
 }
 
-/* message hover line */
 .message-2CShn3:hover {
   background: rgba(255, 255, 255, 0.02) !important;
   box-shadow:
@@ -260,9 +278,9 @@ button:hover,
     0 0 14px rgba(0, 0, 0, 0.18) !important;
 }
 
-/* =========================
+/* =========================================================
    BUTTONS
-========================= */
+   ========================================================= */
 
 .button-12Fmur,
 .lookFilled-yCfaCM {
@@ -284,19 +302,19 @@ button:hover,
   ) !important;
 }
 
-/* =========================
-   INPUT BOX
-========================= */
+/* =========================================================
+   INPUT AREA
+   ========================================================= */
 
 .scrollableContainer-15eg7h,
 .channelTextArea-1FufC0 {
-  background: rgba(90, 18, 18, 0.20) !important;
+  background: rgba(90, 18, 18, 0.18) !important;
   border: 1px solid rgba(155, 60, 60, 0.16) !important;
 }
 
-/* =========================
-   THINNER DARKER RED SCROLLBAR
-========================= */
+/* =========================================================
+   SCROLLBAR
+   ========================================================= */
 
 ::-webkit-scrollbar {
   width: 6px !important;
@@ -331,11 +349,10 @@ button:hover,
   scrollbar-color: var(--red-darker) rgba(25, 0, 0, 0.18) !important;
 }
 
-/* =========================
-   EXTRA COOL STUFF
-========================= */
+/* =========================================================
+   EXTRA LITTLE TOUCHES
+   ========================================================= */
 
-/* subtle glow on panels at rest */
 .panels-3wFtMD,
 .sidebar-1tnWFu,
 .membersWrap-3NUR2t,
@@ -345,13 +362,11 @@ button:hover,
     0 0 12px rgba(90, 0, 0, 0.08) !important;
 }
 
-/* server icons darker hover */
 .wrapper-28eC3z:hover,
 .childWrapper-1j_1ub:hover {
   background: rgba(70, 8, 8, 0.18) !important;
 }
 
-/* faint tinted read areas */
 .container-36u7Lw,
 .content-1SgpWY,
 .chatContent-3KubbW,
