@@ -1,119 +1,115 @@
 :root {
   --bg-image: url("https://i.imgur.com/Q2qoq7L.jpeg");
 
-  --red-black: #240303;
-  --red-deepest: #190202;
-  --red-darker: #4a0909;
-  --red-dark: #5e0d0d;
-  --red-mid: #741414;
+  --red-black: #180202;
+  --red-deepest: #250303;
+  --red-darker: #3a0707;
+  --red-dark: #521010;
+  --red-mid: #7c1b1b;
+  --red-bright: #b93a3a;
+  --red-name: #d78a8a;
+  --red-name-strong: #e7b1b1;
 
-  --red-faint: rgba(110, 16, 16, 0.12);
-  --red-faint-2: rgba(130, 20, 20, 0.16);
+  --red-faint: rgba(95, 12, 12, 0.14);
+  --red-faint-2: rgba(120, 18, 18, 0.18);
+  --red-faint-3: rgba(150, 26, 26, 0.24);
 
-  --panel-border: rgba(170, 60, 60, 0.14);
+  --panel-border: rgba(190, 90, 90, 0.16);
   --panel-shadow: rgba(0, 0, 0, 0.34);
 
-  --text-main: #f2ebeb;
-  --text-muted: #ccbaba;
+  --text-main: #f4eeee;
+  --text-muted: #d6c0c0;
 
-  --deep-ui-red: rgba(28, 3, 3, 0.94);
-  --deep-ui-red-2: rgba(40, 5, 5, 0.90);
+  --input-bg: rgba(72, 10, 10, 0.34);
+  --input-border: rgba(190, 90, 90, 0.24);
 
-  --name-crimson: #2a0506;
-  --name-crimson-2: #3a090b;
-  --name-shadow: rgba(0, 0, 0, 0.60);
+  --profile-grad-1: rgba(40, 5, 5, 0.92);
+  --profile-grad-2: rgba(68, 8, 8, 0.90);
+  --profile-grad-3: rgba(95, 14, 14, 0.84);
 }
 
-/* =========================================================
-   BACKGROUND + ANIMATION
-   ========================================================= */
-
-/* =========================================================
-   BACKGROUND - RESTORED DRAGON
-   ========================================================= */
-
+/* ========================= BACKGROUND FIX ========================= */
 html,
 body,
-#app-mount {
-  background: transparent !important;
-  min-height: 100% !important;
-}
-
-body {
-  background: transparent !important;
-}
-
-#app-mount {
-  position: relative !important;
-  isolation: isolate !important;
-}
-
-/* actual wallpaper */
-#app-mount::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background:
-    linear-gradient(rgba(0, 0, 0, 0.34), rgba(0, 0, 0, 0.66)),
-    var(--bg-image) center / cover no-repeat !important;
-  pointer-events: none;
-  z-index: -2;
-}
-
-/* red tint */
-#app-mount::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background:
-    radial-gradient(circle at 50% 30%, rgba(120, 0, 0, 0.06), transparent 34%),
-    linear-gradient(180deg, rgba(20, 0, 0, 0.04), rgba(0, 0, 0, 0.14));
-  pointer-events: none;
-  z-index: -1;
-}
-/* =========================================================
-   REMOVE DEFAULT BACKGROUNDS
-   ========================================================= */
-
-[class*="appMount"],
-[class*="app_"],
-[class*="bg_"],
-[class*="layer_"],
-[class*="base_"],
-[class*="container_"],
-[class*="chat_"],
-[class*="content_"],
-[class*="membersWrap_"],
-[class*="members_"],
-[class*="sidebar_"],
-[class*="peopleColumn_"],
-[class*="nowPlayingColumn_"],
-[class*="standardSidebarView_"],
-[class*="contentRegion_"],
-[class*="sidebarRegion_"],
-[class*="scroller_"],
-[class*="privateChannels_"],
-[class*="messagesWrapper_"],
-[class*="chatContent_"],
-[class*="pageWrapper_"],
-[class*="applicationStore_"] {
-  background-color: transparent !important;
-}
-
-#app-mount > *,
+#app-mount,
 .appMount-2yBXZl,
 .app-2CXKsg,
 .bg-1QIAus,
 .layer-86YKbF,
 .base-2jDfDU {
-  position: relative !important;
-  z-index: 0 !important;
+  background: var(--bg-image) center/cover no-repeat fixed !important;
+  background-color: #000 !important;
 }
 
-/* =========================================================
-   PANELS
-   ========================================================= */
+/* remove many solid backgrounds */
+.theme-dark,
+.visual-refresh,
+.layers-OrUESM,
+.container__133bf,
+.wrapper__9916c,
+.bg__12180,
+.contentRegion__08eba,
+.sidebarRegionScroller__1fa7e,
+.standardSidebarView__12528,
+.chat-2ZfjoI,
+.container-ZMc96U,
+.membersWrap-3NUR2t,
+.privateChannels-oVe7HL,
+.scroller-WSmht3,
+.scrollerBase-_bVAAt,
+.content-1SgpWY,
+.chatContent-3KubbW,
+.messagesWrapper-RpOMA3 {
+  background-color: transparent !important;
+}
 
+/* cinematic dark overlay */
+#app-mount::before,
+.appMount-2yBXZl::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 35%, rgba(120, 0, 0, 0.08), transparent 35%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.24), rgba(0, 0, 0, 0.58));
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* UI above overlay */
+.app-2CXKsg,
+.bg-1QIAus,
+.layer-86YKbF,
+.base-2jDfDU,
+.sidebar-1tnWFu,
+.chat-2ZfjoI,
+.membersWrap-3NUR2t,
+.container-ZMc96U,
+.standardSidebarView-E9Pc3j {
+  position: relative;
+  z-index: 1;
+}
+
+/* ========================= FAINT RED AMBIENT ANIMATION ========================= */
+@keyframes yakuzaRedPulse {
+  0% {
+    box-shadow:
+      0 0 10px rgba(90, 0, 0, 0.04),
+      0 0 18px rgba(0, 0, 0, 0.24);
+  }
+  50% {
+    box-shadow:
+      0 0 14px rgba(130, 10, 10, 0.10),
+      0 0 22px rgba(0, 0, 0, 0.32);
+  }
+  100% {
+    box-shadow:
+      0 0 10px rgba(90, 0, 0, 0.04),
+      0 0 18px rgba(0, 0, 0, 0.24);
+  }
+}
+
+/* ========================= GLASS PANELS ========================= */
 .sidebar-1tnWFu,
 .container-1NXEtd,
 .chat-2ZfjoI,
@@ -133,6 +129,8 @@ body {
 .contentRegion-3HkfJJ,
 .sidebarRegion-1VBisG,
 .form-3gdLxP,
+.channelTextArea-1FufC0,
+.scrollableContainer-15eg7h,
 .container__2637a,
 .contentRegionScroller__86c79,
 .sidebarRegionScroller__1fa7e {
@@ -141,64 +139,64 @@ body {
     var(--red-faint),
     var(--red-faint-2)
   ) !important;
-  backdrop-filter: blur(10px) saturate(112%) !important;
-  -webkit-backdrop-filter: blur(10px) saturate(112%) !important;
+  backdrop-filter: blur(8px) saturate(108%) !important;
+  -webkit-backdrop-filter: blur(8px) saturate(108%) !important;
   border: 1px solid var(--panel-border) !important;
   box-shadow:
     0 0 14px var(--panel-shadow),
-    0 0 10px rgba(85, 0, 0, 0.08) !important;
+    0 0 10px rgba(85, 0, 0, 0.06) !important;
+  animation: yakuzaRedPulse 8s ease-in-out infinite !important;
 }
 
-/* =========================================================
-   TOP BARS
-   ========================================================= */
-
+/* headers / top bars */
 .title-31SJ6t,
 .header-3OsQeK,
-.children-3xh0VB,
-.container-ZMc96U.themed-Hp1KC_ {
+.children-3xh0VB {
   background: rgba(95, 18, 18, 0.14) !important;
-  backdrop-filter: blur(8px) !important;
-  -webkit-backdrop-filter: blur(8px) !important;
+  backdrop-filter: blur(6px) !important;
+  -webkit-backdrop-filter: blur(6px) !important;
   border-bottom: 1px solid rgba(170, 70, 70, 0.10) !important;
 }
 
-/* =========================================================
-   CHAT-ONLY BLUR
-   ========================================================= */
-
-.chatContent-3KubbW,
-.messagesWrapper-RpOMA3 {
-  backdrop-filter: blur(2px) !important;
-  -webkit-backdrop-filter: blur(2px) !important;
-  background: transparent !important;
+/* ========================= USERNAMES / TITLES FIX ========================= */
+.username-h_Y3Us,
+.username-1A8OIy,
+.name-3Uvkvr,
+.title-17SveM,
+.headerText-2z4IhQ,
+.nickname-3P1RuO,
+.memberInner-2CPc3V,
+.member-2gU6Ar .name-3Vmqxm,
+.layout-1qmrhw .name-3Vmqxm,
+.markup-eYLPri strong,
+[class*="userTagUsername"],
+[class*="discrim"],
+[class*="nameTag"] {
+  color: var(--red-name) !important;
+  text-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.78),
+    0 0 6px rgba(0, 0, 0, 0.40) !important;
 }
 
-/* =========================================================
-   SERVER BAR
-   ========================================================= */
-
-.guilds-2JjMmN,
-.wrapper-1_HaEi,
-.tree-3agP2X,
-.scroller-3X7KbA {
-  background: linear-gradient(
-    180deg,
-    var(--deep-ui-red),
-    var(--deep-ui-red-2)
-  ) !important;
-  border-right: 1px solid rgba(120, 35, 35, 0.14) !important;
+/* selected / focused names slightly brighter */
+.modeSelected-3DmyhH .name-3Uvkvr,
+.interactiveSelected-29CP8y .name-3Uvkvr,
+.selected-1Drb7Z .name-3Uvkvr,
+.member-2gU6Ar:hover .name-3Vmqxm,
+.layout-1qmrhw:hover .name-3Vmqxm {
+  color: var(--red-name-strong) !important;
 }
 
-.itemsContainer_ef3116,
-.stack_dbd263 {
-  background: transparent !important;
+/* message author names */
+[class*="username"]:not(input):not(textarea),
+[class*="headerText"] span,
+[class*="messageContent"] strong {
+  text-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.72),
+    0 0 5px rgba(0, 0, 0, 0.34) !important;
 }
 
-/* =========================================================
-   TEXT
-   ========================================================= */
-
+/* ========================= NORMAL TEXT ========================= */
 .defaultColor-1EVLSt,
 .markup-eYLPri,
 .contents-3ca1mk,
@@ -211,103 +209,37 @@ body {
 .text-sm-normal-AEQz4v,
 .text-xs-normal-3SiVjE,
 .channelInfo-3jN1ay,
-.repliedTextPreview-1bvxun {
+.repliedTextPreview-1bvxun,
+.subtext-1RtU34 {
   color: var(--text-muted) !important;
 }
 
+/* links/icons */
 a,
 .anchor-1MIwyf,
 .icon-2xnN2Y,
 .icon-1Y-Gpt {
-  color: var(--red-mid) !important;
+  color: var(--red-bright) !important;
 }
 
-/* =========================================================
-   NAMES - BROADER / STRONGER FIX
-   ========================================================= */
-
-/* general username/name targeting */
-[class*="username"],
-[class*="name"],
-[class*="nickname"],
-[class*="headerText"],
-[class*="userTag"],
-[class*="member"] [class*="name"],
-[class*="layout"] [class*="name"],
-[class*="memberInner"] [class*="name"],
-[class*="title"] [class*="name"] {
-  color: var(--name-crimson) !important;
-  text-shadow:
-    0 1px 0 var(--name-shadow),
-    0 0 3px rgba(90, 0, 0, 0.14) !important;
-}
-
-/* specific older/current Discord classes for extra safety */
-.username-h_Y3Us,
-.username-1A8OIy,
-.name-3Uvkvr,
-.title-17SveM,
-.headerText-2z4IhQ,
-.nickname-3P1RuO,
-.memberInner-2CPc3V,
-.member-2gU6Ar .name-3Vmqxm,
-.layout-1qmrhw .name-3Vmqxm,
-.markup-eYLPri strong {
-  color: var(--name-crimson) !important;
-  text-shadow:
-    0 1px 0 var(--name-shadow),
-    0 0 3px rgba(90, 0, 0, 0.14) !important;
-}
-
-/* selected entries slightly brighter */
-.modeSelected-3DmyhH .name-3Uvkvr,
-.interactiveSelected-29CP8y .name-3Uvkvr,
-.selected-1Drb7Z .name-3Uvkvr,
-[class*="selected"] [class*="name"],
-[class*="interactiveSelected"] [class*="name"],
-[class*="modeSelected"] [class*="name"] {
-  color: var(--name-crimson-2) !important;
-}
-
-/* keep colored role usernames from becoming unreadable */
-span[style*="color"] {
-  filter: brightness(0.72) saturate(1.05) !important;
-  text-shadow:
-    0 1px 0 rgba(0, 0, 0, 0.55),
-    0 0 3px rgba(0, 0, 0, 0.10) !important;
-}
-
-/* =========================================================
-   SELECTED / HOVERED ITEMS
-   ========================================================= */
-
+/* ========================= SELECTED CHANNELS / ITEMS ========================= */
 .modeSelected-3DmyhH,
 .interactiveSelected-29CP8y,
-.selected-1Drb7Z,
-[class*="selected"],
-[class*="modeSelected"],
-[class*="interactiveSelected"] {
-  background: linear-gradient(
-    90deg,
-    rgba(80, 8, 8, 0.24),
-    rgba(45, 4, 4, 0.14)
-  ) !important;
-  border-left: 2px solid var(--red-dark) !important;
+.selected-1Drb7Z {
+  background: rgba(80, 8, 8, 0.22) !important;
+  border-left: 2px solid var(--red-mid) !important;
   box-shadow:
     0 0 10px rgba(0, 0, 0, 0.22),
-    0 0 10px rgba(100, 0, 0, 0.10) !important;
+    0 0 10px rgba(100, 0, 0, 0.08) !important;
 }
 
+/* channel hover */
 .channel-1Shao0:hover,
-.clickable-28SzVr:hover,
-.interactive-1vLZ_I:hover {
-  background: rgba(65, 8, 8, 0.16) !important;
+.clickable-28SzVr:hover {
+  background: rgba(65, 8, 8, 0.14) !important;
 }
 
-/* =========================================================
-   HOVER GLOW
-   ========================================================= */
-
+/* ========================= MOUSE / HOVER BLACK GLOW ========================= */
 button:hover,
 [role="button"]:hover,
 .clickable-28SzVr:hover,
@@ -324,29 +256,22 @@ button:hover,
 .link__95dc0:hover {
   box-shadow:
     0 0 0 1px rgba(0, 0, 0, 0.12),
-    0 0 14px rgba(0, 0, 0, 0.34),
-    0 0 24px rgba(0, 0, 0, 0.16) !important;
+    0 0 14px rgba(0, 0, 0, 0.30),
+    0 0 22px rgba(0, 0, 0, 0.14) !important;
   transition:
     box-shadow 0.18s ease,
     background 0.18s ease !important;
 }
 
-.message-2CShn3:hover,
-[class*="message"]:hover {
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0.02),
-    rgba(90, 0, 0, 0.04)
-  ) !important;
+/* message hover line */
+.message-2CShn3:hover {
+  background: rgba(255, 255, 255, 0.02) !important;
   box-shadow:
-    inset 2px 0 0 rgba(0, 0, 0, 0.40),
-    0 0 14px rgba(0, 0, 0, 0.18) !important;
+    inset 2px 0 0 rgba(0, 0, 0, 0.38),
+    0 0 14px rgba(0, 0, 0, 0.16) !important;
 }
 
-/* =========================================================
-   BUTTONS
-   ========================================================= */
-
+/* ========================= BUTTONS ========================= */
 .button-12Fmur,
 .lookFilled-yCfaCM {
   background: linear-gradient(
@@ -367,91 +292,61 @@ button:hover,
   ) !important;
 }
 
-/* =========================================================
-   INPUT AREA - NUCLEAR FIX
-   ========================================================= */
-
-/* outer shell */
-.channelTextArea-1FufC0,
+/* ========================= INPUT BOX ========================= */
 .scrollableContainer-15eg7h,
-.themedBackground-1aP0xJ,
-.form-3gdLxP:before,
-.base-3bcbY3,
-[class*="channelTextArea"],
-[class*="scrollableContainer"],
-[class*="themedBackground"],
-[class*="attachButtonInner"],
-[class*="inner"] {
-  background: linear-gradient(
-    180deg,
-    var(--deep-ui-red),
-    var(--deep-ui-red-2)
-  ) !important;
-  border-color: rgba(120, 35, 35, 0.22) !important;
-}
-
-/* actual input container emphasis */
-.channelTextArea-1FufC0,
-[class*="channelTextArea"] {
-  border: 1px solid rgba(120, 35, 35, 0.22) !important;
+.channelTextArea-1FufC0 {
+  background: var(--input-bg) !important;
+  border: 1px solid var(--input-border) !important;
   box-shadow:
-    0 0 0 1px rgba(0, 0, 0, 0.25),
-    0 0 14px rgba(0, 0, 0, 0.30) !important;
-  border-radius: 12px !important;
+    inset 0 0 0 1px rgba(255, 255, 255, 0.02),
+    0 0 12px rgba(0, 0, 0, 0.22) !important;
 }
 
-/* kill gray inner layers */
-.textArea__74543,
-.textAreaSlate__8f5a9,
-.editor__66464,
-[class*="textArea"],
-[class*="editor"],
-[class*="slateTextArea"],
-[class*="placeholder"],
-[class*="input"] {
-  background: transparent !important;
+/* placeholder / typed text */
+.placeholder__1b31f,
+.slateTextArea_ec4baf,
+.fontSize16Padding-XoMpjI {
+  color: var(--text-main) !important;
 }
 
-/* kill child gray blocks */
-.channelTextArea-1FufC0 > div,
-.scrollableContainer-15eg7h > div,
-[class*="channelTextArea"] > div,
-[class*="scrollableContainer"] > div,
-[class*="editor"] > div,
-[class*="textArea"] > div {
-  background: transparent !important;
-}
-
-/* keep buttons inside bar from looking detached */
-[class*="channelTextArea"] button,
-[class*="channelTextArea"] [role="button"],
-.attachButton-_ACFSu,
-.buttonContainer-1sjtPU {
-  background: transparent !important;
-}
-
-/* focus state */
-.channelTextArea-1FufC0:focus-within,
-[class*="channelTextArea"]:focus-within {
-  border: 1px solid rgba(160, 40, 40, 0.38) !important;
+/* ========================= PROFILE CARDS ========================= */
+[class*="userProfileInner"],
+[class*="overlayBackground"],
+[class*="profileCard"],
+[class*="biteSize"],
+[class*="fullSize"] {
+  background:
+    linear-gradient(
+      180deg,
+      var(--profile-grad-1) 0%,
+      var(--profile-grad-2) 52%,
+      var(--profile-grad-3) 100%
+    ) !important;
+  border: 1px solid rgba(170, 60, 60, 0.20) !important;
   box-shadow:
-    0 0 0 1px rgba(120, 20, 20, 0.42),
-    0 0 18px rgba(0, 0, 0, 0.35) !important;
+    0 0 24px rgba(0, 0, 0, 0.42),
+    0 0 14px rgba(95, 0, 0, 0.10) !important;
 }
 
-/* text in bar */
-.placeholder-1rCBhr,
-.slateTextArea-27tjG0,
-.fontSize16Padding-XoMpjI,
-[class*="placeholder"],
-[class*="slateTextArea"] {
-  color: #e9dcdc !important;
+/* keep other people's banners intact, only tint container areas around them */
+[class*="userProfileInner"] [class*="infoScroller"],
+[class*="userProfileInner"] [class*="body"],
+[class*="userProfileInner"] [class*="footer"],
+[class*="userProfileInner"] [class*="overlayBackground"] {
+  background-color: transparent !important;
 }
 
-/* =========================================================
-   SCROLLBAR
-   ========================================================= */
+/* profile text */
+[class*="userProfileInner"] [class*="nickname"],
+[class*="userProfileInner"] [class*="username"],
+[class*="userProfileInner"] [class*="pronouns"],
+[class*="userProfileInner"] [class*="description"] {
+  text-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.76),
+    0 0 5px rgba(0, 0, 0, 0.28) !important;
+}
 
+/* ========================= THINNER DARKER RED SCROLLBAR ========================= */
 ::-webkit-scrollbar {
   width: 6px !important;
   height: 6px !important;
@@ -483,4 +378,26 @@ button:hover,
 * {
   scrollbar-width: thin !important;
   scrollbar-color: var(--red-darker) rgba(25, 0, 0, 0.18) !important;
+}
+
+/* ========================= EXTRA POLISH ========================= */
+.panels-3wFtMD,
+.sidebar-1tnWFu,
+.membersWrap-3NUR2t,
+.container-ZMc96U {
+  box-shadow:
+    0 0 18px rgba(0, 0, 0, 0.28),
+    0 0 10px rgba(90, 0, 0, 0.06) !important;
+}
+
+.wrapper-28eC3z:hover,
+.childWrapper-1j_1ub:hover {
+  background: rgba(70, 8, 8, 0.14) !important;
+}
+
+.container-36u7Lw,
+.content-1SgpWY,
+.chatContent-3KubbW,
+.messagesWrapper-RpOMA3 {
+  background: transparent !important;
 }
