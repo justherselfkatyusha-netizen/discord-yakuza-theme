@@ -16,12 +16,8 @@
   --text-main: #f2ebeb;
   --text-muted: #ccbaba;
 
-  --deep-ui-red: rgba(28, 3, 3, 0.94);
-  --deep-ui-red-2: rgba(40, 5, 5, 0.90);
-
-  --name-crimson: #2a0506;
-  --name-crimson-2: #3a090b;
-  --name-shadow: rgba(0, 0, 0, 0.60);
+  --deep-ui-red: rgba(28, 3, 3, 0.92);
+  --deep-ui-red-2: rgba(40, 5, 5, 0.86);
 }
 
 /* =========================================================
@@ -183,7 +179,7 @@ body::after {
 }
 
 /* =========================================================
-   SERVER BAR
+   SERVER BAR + TEXT BAR SHARED DARK RED
    ========================================================= */
 
 .guilds-2JjMmN,
@@ -206,6 +202,22 @@ body::after {
 /* =========================================================
    TEXT
    ========================================================= */
+
+.username-h_Y3Us,
+.username-1A8OIy,
+.name-3Uvkvr,
+.title-17SveM,
+.headerText-2z4IhQ,
+.nickname-3P1RuO,
+.memberInner-2CPc3V,
+.member-2gU6Ar .name-3Vmqxm,
+.layout-1qmrhw .name-3Vmqxm,
+.markup-eYLPri strong {
+  color: #2a0505 !important;
+  text-shadow:
+    0 0 2px rgba(0, 0, 0, 0.60),
+    0 0 4px rgba(120, 0, 0, 0.15) !important;
+}
 
 .defaultColor-1EVLSt,
 .markup-eYLPri,
@@ -231,79 +243,23 @@ a,
 }
 
 /* =========================================================
-   NAMES - BROADER / STRONGER FIX
-   ========================================================= */
-
-/* general username/name targeting */
-[class*="username"],
-[class*="name"],
-[class*="nickname"],
-[class*="headerText"],
-[class*="userTag"],
-[class*="member"] [class*="name"],
-[class*="layout"] [class*="name"],
-[class*="memberInner"] [class*="name"],
-[class*="title"] [class*="name"] {
-  color: var(--name-crimson) !important;
-  text-shadow:
-    0 1px 0 var(--name-shadow),
-    0 0 3px rgba(90, 0, 0, 0.14) !important;
-}
-
-/* specific older/current Discord classes for extra safety */
-.username-h_Y3Us,
-.username-1A8OIy,
-.name-3Uvkvr,
-.title-17SveM,
-.headerText-2z4IhQ,
-.nickname-3P1RuO,
-.memberInner-2CPc3V,
-.member-2gU6Ar .name-3Vmqxm,
-.layout-1qmrhw .name-3Vmqxm,
-.markup-eYLPri strong {
-  color: var(--name-crimson) !important;
-  text-shadow:
-    0 1px 0 var(--name-shadow),
-    0 0 3px rgba(90, 0, 0, 0.14) !important;
-}
-
-/* selected entries slightly brighter */
-.modeSelected-3DmyhH .name-3Uvkvr,
-.interactiveSelected-29CP8y .name-3Uvkvr,
-.selected-1Drb7Z .name-3Uvkvr,
-[class*="selected"] [class*="name"],
-[class*="interactiveSelected"] [class*="name"],
-[class*="modeSelected"] [class*="name"] {
-  color: var(--name-crimson-2) !important;
-}
-
-/* keep colored role usernames from becoming unreadable */
-span[style*="color"] {
-  filter: brightness(0.72) saturate(1.05) !important;
-  text-shadow:
-    0 1px 0 rgba(0, 0, 0, 0.55),
-    0 0 3px rgba(0, 0, 0, 0.10) !important;
-}
-
-/* =========================================================
    SELECTED / HOVERED ITEMS
    ========================================================= */
 
 .modeSelected-3DmyhH,
 .interactiveSelected-29CP8y,
-.selected-1Drb7Z,
-[class*="selected"],
-[class*="modeSelected"],
-[class*="interactiveSelected"] {
-  background: linear-gradient(
-    90deg,
-    rgba(80, 8, 8, 0.24),
-    rgba(45, 4, 4, 0.14)
-  ) !important;
+.selected-1Drb7Z {
+  background: rgba(80, 8, 8, 0.24) !important;
   border-left: 2px solid var(--red-dark) !important;
   box-shadow:
     0 0 10px rgba(0, 0, 0, 0.22),
     0 0 10px rgba(100, 0, 0, 0.10) !important;
+}
+
+.modeSelected-3DmyhH .name-3Uvkvr,
+.interactiveSelected-29CP8y .name-3Uvkvr,
+.selected-1Drb7Z .name-3Uvkvr {
+  color: #3a0808 !important;
 }
 
 .channel-1Shao0:hover,
@@ -339,13 +295,8 @@ button:hover,
     background 0.18s ease !important;
 }
 
-.message-2CShn3:hover,
-[class*="message"]:hover {
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0.02),
-    rgba(90, 0, 0, 0.04)
-  ) !important;
+.message-2CShn3:hover {
+  background: rgba(255, 255, 255, 0.02) !important;
   box-shadow:
     inset 2px 0 0 rgba(0, 0, 0, 0.40),
     0 0 14px rgba(0, 0, 0, 0.18) !important;
@@ -376,83 +327,41 @@ button:hover,
 }
 
 /* =========================================================
-   INPUT AREA - NUCLEAR FIX
+   INPUT AREA
    ========================================================= */
 
-/* outer shell */
 .channelTextArea-1FufC0,
 .scrollableContainer-15eg7h,
 .themedBackground-1aP0xJ,
 .form-3gdLxP:before,
-.base-3bcbY3,
-[class*="channelTextArea"],
-[class*="scrollableContainer"],
-[class*="themedBackground"],
-[class*="attachButtonInner"],
-[class*="inner"] {
+.base-3bcbY3 {
   background: linear-gradient(
     180deg,
     var(--deep-ui-red),
     var(--deep-ui-red-2)
   ) !important;
-  border-color: rgba(120, 35, 35, 0.22) !important;
-}
-
-/* actual input container emphasis */
-.channelTextArea-1FufC0,
-[class*="channelTextArea"] {
   border: 1px solid rgba(120, 35, 35, 0.22) !important;
   box-shadow:
     0 0 0 1px rgba(0, 0, 0, 0.25),
     0 0 14px rgba(0, 0, 0, 0.30) !important;
-  border-radius: 12px !important;
 }
 
-/* kill gray inner layers */
 .textArea__74543,
 .textAreaSlate__8f5a9,
-.editor__66464,
-[class*="textArea"],
-[class*="editor"],
-[class*="slateTextArea"],
-[class*="placeholder"],
-[class*="input"] {
+.editor__66464 {
   background: transparent !important;
 }
 
-/* kill child gray blocks */
-.channelTextArea-1FufC0 > div,
-.scrollableContainer-15eg7h > div,
-[class*="channelTextArea"] > div,
-[class*="scrollableContainer"] > div,
-[class*="editor"] > div,
-[class*="textArea"] > div {
-  background: transparent !important;
-}
-
-/* keep buttons inside bar from looking detached */
-[class*="channelTextArea"] button,
-[class*="channelTextArea"] [role="button"],
-.attachButton-_ACFSu,
-.buttonContainer-1sjtPU {
-  background: transparent !important;
-}
-
-/* focus state */
-.channelTextArea-1FufC0:focus-within,
-[class*="channelTextArea"]:focus-within {
-  border: 1px solid rgba(160, 40, 40, 0.38) !important;
+.channelTextArea-1FufC0:focus-within {
+  border: 1px solid rgba(160, 40, 40, 0.35) !important;
   box-shadow:
-    0 0 0 1px rgba(120, 20, 20, 0.42),
+    0 0 0 1px rgba(120, 20, 20, 0.40),
     0 0 18px rgba(0, 0, 0, 0.35) !important;
 }
 
-/* text in bar */
 .placeholder-1rCBhr,
 .slateTextArea-27tjG0,
-.fontSize16Padding-XoMpjI,
-[class*="placeholder"],
-[class*="slateTextArea"] {
+.fontSize16Padding-XoMpjI {
   color: #e9dcdc !important;
 }
 
