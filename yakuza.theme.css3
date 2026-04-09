@@ -1,21 +1,25 @@
 :root {
-  --bg-image: url("https://media.discordapp.net/attachments/1404619877016408229/1491746595660759090/dragon.jpg");
+  --bg-image: url("https://i.imgur.com/Q2qoq7L.jpeg");
 
-  --yakuza-red-dark: #6e0f0f;
-  --yakuza-red-darker: #4d0909;
-  --yakuza-red-lightglass: rgba(120, 30, 30, 0.18);
-  --yakuza-red-lightglass-2: rgba(140, 35, 35, 0.22);
+  --red-black: #240303;
+  --red-deepest: #320505;
+  --red-darker: #4a0909;
+  --red-dark: #5e0d0d;
+  --red-mid: #741414;
+  --red-name: #6b1111;
+  --red-faint: rgba(110, 16, 16, 0.16);
+  --red-faint-2: rgba(130, 20, 20, 0.20);
+  --red-faint-3: rgba(150, 25, 25, 0.24);
 
-  --text-main: #f3eeee;
-  --text-muted-custom: #c9b4b4;
-  --name-red: #7b1818;
+  --panel-border: rgba(170, 60, 60, 0.16);
+  --panel-shadow: rgba(0, 0, 0, 0.34);
 
-  --panel-border: rgba(180, 70, 70, 0.18);
-  --panel-shadow: rgba(0, 0, 0, 0.32);
+  --text-main: #f2ebeb;
+  --text-muted: #ccbaba;
 }
 
 /* =========================
-   FORCE BACKGROUND
+   BACKGROUND FIX
 ========================= */
 
 html,
@@ -27,10 +31,10 @@ body,
 .layer-86YKbF,
 .base-2jDfDU {
   background: var(--bg-image) center/cover no-repeat fixed !important;
-  background-color: transparent !important;
+  background-color: #000 !important;
 }
 
-/* kill most default solid backgrounds without nuking everything */
+/* remove many solid backgrounds */
 .theme-dark,
 .visual-refresh,
 .layers-OrUESM,
@@ -39,28 +43,33 @@ body,
 .bg__12180,
 .contentRegion__08eba,
 .sidebarRegionScroller__1fa7e,
-.standardSidebarView__12528 {
-  background: transparent !important;
+.standardSidebarView__12528,
+.chat-2ZfjoI,
+.container-ZMc96U,
+.membersWrap-3NUR2t,
+.privateChannels-oVe7HL,
+.scroller-WSmht3,
+.scrollerBase-_bVAAt,
+.content-1SgpWY,
+.chatContent-3KubbW,
+.messagesWrapper-RpOMA3 {
   background-color: transparent !important;
 }
 
-/* readability overlay */
+/* cinematic dark overlay */
 #app-mount::before,
 .appMount-2yBXZl::before {
   content: "";
   position: fixed;
   inset: 0;
   background:
-    linear-gradient(
-      180deg,
-      rgba(0, 0, 0, 0.32),
-      rgba(0, 0, 0, 0.52)
-    );
+    radial-gradient(circle at 50% 35%, rgba(120, 0, 0, 0.08), transparent 35%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.28), rgba(0, 0, 0, 0.60));
   pointer-events: none;
   z-index: 0;
 }
 
-/* make sure UI sits above overlay */
+/* UI above overlay */
 .app-2CXKsg,
 .bg-1QIAus,
 .layer-86YKbF,
@@ -75,8 +84,30 @@ body,
 }
 
 /* =========================
+   FAINT RED AMBIENT ANIMATION
+========================= */
+
+@keyframes yakuzaRedPulse {
+  0% {
+    box-shadow:
+      0 0 10px rgba(90, 0, 0, 0.05),
+      0 0 18px rgba(0, 0, 0, 0.24);
+  }
+  50% {
+    box-shadow:
+      0 0 16px rgba(130, 10, 10, 0.12),
+      0 0 24px rgba(0, 0, 0, 0.34);
+  }
+  100% {
+    box-shadow:
+      0 0 10px rgba(90, 0, 0, 0.05),
+      0 0 18px rgba(0, 0, 0, 0.24);
+  }
+}
+
+/* =========================
    GLASS PANELS
-   slightly transparent lighter red
+   slightly transparent light red
 ========================= */
 
 .sidebar-1tnWFu,
@@ -99,28 +130,32 @@ body,
 .sidebarRegion-1VBisG,
 .form-3gdLxP,
 .channelTextArea-1FufC0,
-.scrollableContainer-15eg7h {
+.scrollableContainer-15eg7h,
+.container__2637a,
+.contentRegionScroller__86c79,
+.sidebarRegionScroller__1fa7e {
   background: linear-gradient(
     180deg,
-    var(--yakuza-red-lightglass),
-    var(--yakuza-red-lightglass-2)
+    var(--red-faint),
+    var(--red-faint-2)
   ) !important;
-  backdrop-filter: blur(10px) saturate(110%) !important;
-  -webkit-backdrop-filter: blur(10px) saturate(110%) !important;
+  backdrop-filter: blur(10px) saturate(112%) !important;
+  -webkit-backdrop-filter: blur(10px) saturate(112%) !important;
   border: 1px solid var(--panel-border) !important;
   box-shadow:
-    0 0 12px var(--panel-shadow),
-    0 0 10px rgba(80, 0, 0, 0.10) !important;
+    0 0 14px var(--panel-shadow),
+    0 0 10px rgba(85, 0, 0, 0.08) !important;
+  animation: yakuzaRedPulse 7s ease-in-out infinite !important;
 }
 
-/* slightly deeper top/header bars */
+/* headers / top bars */
 .title-31SJ6t,
 .header-3OsQeK,
 .children-3xh0VB {
-  background: rgba(90, 18, 18, 0.20) !important;
+  background: rgba(95, 18, 18, 0.18) !important;
   backdrop-filter: blur(8px) !important;
   -webkit-backdrop-filter: blur(8px) !important;
-  border-bottom: 1px solid rgba(170, 70, 70, 0.12) !important;
+  border-bottom: 1px solid rgba(170, 70, 70, 0.10) !important;
 }
 
 /* =========================
@@ -137,11 +172,11 @@ body,
 .member-2gU6Ar .name-3Vmqxm,
 .layout-1qmrhw .name-3Vmqxm,
 .markup-eYLPri strong {
-  color: var(--name-red) !important;
-  text-shadow: 0 0 3px rgba(0, 0, 0, 0.18) !important;
+  color: var(--red-name) !important;
+  text-shadow: 0 0 3px rgba(0, 0, 0, 0.22) !important;
 }
 
-/* normal readable text */
+/* normal text */
 .defaultColor-1EVLSt,
 .markup-eYLPri,
 .contents-3ca1mk,
@@ -155,30 +190,45 @@ body,
 .text-xs-normal-3SiVjE,
 .channelInfo-3jN1ay,
 .repliedTextPreview-1bvxun {
-  color: var(--text-muted-custom) !important;
+  color: var(--text-muted) !important;
+}
+
+/* links/icons */
+a,
+.anchor-1MIwyf,
+.icon-2xnN2Y,
+.icon-1Y-Gpt {
+  color: var(--red-mid) !important;
 }
 
 /* =========================
-   CHANNELS / SELECTED ITEMS
+   SELECTED CHANNELS / ITEMS
 ========================= */
 
 .modeSelected-3DmyhH,
 .interactiveSelected-29CP8y,
 .selected-1Drb7Z {
-  background: rgba(90, 10, 10, 0.26) !important;
-  border-left: 2px solid var(--yakuza-red-dark) !important;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.22) !important;
+  background: rgba(80, 8, 8, 0.26) !important;
+  border-left: 2px solid var(--red-dark) !important;
+  box-shadow:
+    0 0 10px rgba(0, 0, 0, 0.22),
+    0 0 10px rgba(100, 0, 0, 0.10) !important;
 }
 
 .modeSelected-3DmyhH .name-3Uvkvr,
 .interactiveSelected-29CP8y .name-3Uvkvr,
 .selected-1Drb7Z .name-3Uvkvr {
-  color: #8a1616 !important;
+  color: #861616 !important;
+}
+
+/* channel hover */
+.channel-1Shao0:hover,
+.clickable-28SzVr:hover {
+  background: rgba(65, 8, 8, 0.18) !important;
 }
 
 /* =========================
-   HOVER GLOW - BLACK
-   "mouse pointer position glow black"
+   MOUSE / HOVER BLACK GLOW
 ========================= */
 
 button:hover,
@@ -190,10 +240,24 @@ button:hover,
 .wrapper-NhbLHG:hover,
 .interactive-1vLZ_I:hover,
 .item-2LIpTv:hover,
-.message-2CShn3:hover {
+.message-2CShn3:hover,
+.wrapper-28eC3z:hover,
+.childWrapper-1j_1ub:hover,
+.listItemWrapper__91816:hover,
+.link__95dc0:hover {
   box-shadow:
-    0 0 0 1px rgba(0, 0, 0, 0.10),
-    0 0 12px rgba(0, 0, 0, 0.38) !important;
+    0 0 0 1px rgba(0, 0, 0, 0.12),
+    0 0 14px rgba(0, 0, 0, 0.34),
+    0 0 24px rgba(0, 0, 0, 0.16) !important;
+  transition: box-shadow 0.18s ease, background 0.18s ease !important;
+}
+
+/* message hover line */
+.message-2CShn3:hover {
+  background: rgba(255, 255, 255, 0.02) !important;
+  box-shadow:
+    inset 2px 0 0 rgba(0, 0, 0, 0.40),
+    0 0 14px rgba(0, 0, 0, 0.18) !important;
 }
 
 /* =========================
@@ -204,35 +268,29 @@ button:hover,
 .lookFilled-yCfaCM {
   background: linear-gradient(
     180deg,
-    rgba(120, 18, 18, 0.95),
-    rgba(70, 8, 8, 0.95)
+    rgba(105, 16, 16, 0.96),
+    rgba(58, 7, 7, 0.96)
   ) !important;
-  color: #f6eeee !important;
-  border: 1px solid rgba(150, 50, 50, 0.20) !important;
+  color: #f5efef !important;
+  border: 1px solid rgba(150, 50, 50, 0.18) !important;
 }
 
 .button-12Fmur:hover,
 .lookFilled-yCfaCM:hover {
-  box-shadow:
-    0 0 0 1px rgba(0, 0, 0, 0.14),
-    0 0 14px rgba(0, 0, 0, 0.42) !important;
-}
-
-/* links/icons */
-a,
-.anchor-1MIwyf,
-.icon-2xnN2Y,
-.icon-1Y-Gpt {
-  color: #8f1919 !important;
+  background: linear-gradient(
+    180deg,
+    rgba(118, 18, 18, 0.98),
+    rgba(68, 8, 8, 0.98)
+  ) !important;
 }
 
 /* =========================
-   MESSAGE INPUT
+   INPUT BOX
 ========================= */
 
 .scrollableContainer-15eg7h,
 .channelTextArea-1FufC0 {
-  background: rgba(115, 28, 28, 0.20) !important;
+  background: rgba(90, 18, 18, 0.20) !important;
   border: 1px solid rgba(155, 60, 60, 0.16) !important;
 }
 
@@ -241,15 +299,15 @@ a,
 ========================= */
 
 ::-webkit-scrollbar {
-  width: 7px !important;
-  height: 7px !important;
+  width: 6px !important;
+  height: 6px !important;
 }
 
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(
     180deg,
-    #5a0b0b,
-    #3b0707
+    var(--red-darker),
+    var(--red-black)
   ) !important;
   border-radius: 999px !important;
   border: none !important;
@@ -258,8 +316,8 @@ a,
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(
     180deg,
-    #6b0d0d,
-    #470808
+    var(--red-dark),
+    var(--red-deepest)
   ) !important;
 }
 
@@ -268,48 +326,35 @@ a,
   border-radius: 999px !important;
 }
 
-/* firefox fallback */
 * {
   scrollbar-width: thin !important;
-  scrollbar-color: #4a0909 rgba(25, 0, 0, 0.18) !important;
+  scrollbar-color: var(--red-darker) rgba(25, 0, 0, 0.18) !important;
 }
 
 /* =========================
-   SERVER ICONS / PANELS
+   EXTRA COOL STUFF
 ========================= */
 
+/* subtle glow on panels at rest */
+.panels-3wFtMD,
+.sidebar-1tnWFu,
+.membersWrap-3NUR2t,
+.container-ZMc96U {
+  box-shadow:
+    0 0 18px rgba(0, 0, 0, 0.28),
+    0 0 12px rgba(90, 0, 0, 0.08) !important;
+}
+
+/* server icons darker hover */
 .wrapper-28eC3z:hover,
 .childWrapper-1j_1ub:hover {
-  box-shadow:
-    0 0 0 1px rgba(0, 0, 0, 0.10),
-    0 0 12px rgba(0, 0, 0, 0.35) !important;
+  background: rgba(70, 8, 8, 0.18) !important;
 }
 
-/* =========================
-   EXTRA FIXES FOR BACKGROUND BLEED
-========================= */
-
-.chatContent-3KubbW,
-.messagesWrapper-RpOMA3,
-.content-1SgpWY,
+/* faint tinted read areas */
 .container-36u7Lw,
-.membersWrap-3NUR2t,
-.privateChannels-oVe7HL,
-.scroller-WSmht3,
-.scrollerBase-_bVAAt,
-.container__2637a,
-.contentRegionScroller__86c79,
-.sidebarRegionScroller__1fa7e {
+.content-1SgpWY,
+.chatContent-3KubbW,
+.messagesWrapper-RpOMA3 {
   background: transparent !important;
-}
-
-/* make message area slightly clearer without killing background */
-.message-2CShn3 {
-  background: transparent !important;
-}
-
-/* soft black hover line */
-.message-2CShn3:hover {
-  background: rgba(255, 255, 255, 0.02) !important;
-  box-shadow: inset 2px 0 0 rgba(0, 0, 0, 0.35) !important;
 }
