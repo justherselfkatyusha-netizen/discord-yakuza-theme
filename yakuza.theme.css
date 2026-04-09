@@ -1,3 +1,7 @@
+/* =========================
+   YAKUZA THEME (STABLE + POLISHED + CHATBOX RESTORED)
+   ========================= */
+
 :root {
   --bg-image: url("https://i.imgur.com/Q2qoq7L.jpeg");
 
@@ -7,406 +11,205 @@
   --red-dark: #5e0d0d;
   --red-mid: #741414;
 
-  --red-faint: rgba(110, 16, 16, 0.10);
-  --red-faint-2: rgba(130, 20, 20, 0.14);
+  --red-faint: rgba(110, 16, 16, 0.12);
+  --red-faint-2: rgba(130, 20, 20, 0.16);
 
-  --panel-border: rgba(170, 60, 60, 0.12);
-  --panel-shadow: rgba(0, 0, 0, 0.26);
+  --panel-border: rgba(170, 60, 60, 0.14);
+  --panel-shadow: rgba(0, 0, 0, 0.34);
 
   --text-main: #f2ebeb;
   --text-muted: #ccbaba;
 
-  --deep-ui-red: rgba(28, 3, 3, 0.90);
-  --deep-ui-red-2: rgba(40, 5, 5, 0.86);
+  --deep-ui-red: rgba(28, 3, 3, 0.94);
+  --deep-ui-red-2: rgba(40, 5, 5, 0.90);
 
-  --name-crimson: #c99090;
-  --name-crimson-2: #e0b0b0;
-  --name-shadow: rgba(0, 0, 0, 0.72);
+  --name-crimson: #c78c8c;
+  --name-crimson-2: #e2b0b0;
+  --name-shadow: rgba(0, 0, 0, 0.82);
+
+  --profile-red-1: rgba(30, 4, 4, 0.92);
+  --profile-red-2: rgba(56, 8, 8, 0.90);
+  --profile-red-3: rgba(86, 14, 14, 0.84);
+
+  --chatbar-red-1: rgba(34, 4, 4, 0.95);
+  --chatbar-red-2: rgba(52, 7, 7, 0.92);
+  --chatbar-border: rgba(160, 52, 52, 0.26);
+  --soft-red-glow: rgba(120, 18, 18, 0.10);
 }
 
-/* =========================================================
+/* =========================
    BACKGROUND
-   ========================================================= */
+   ========================= */
 
 html,
 body,
 #app-mount {
   background: transparent !important;
-  min-height: 100% !important;
 }
 
-body {
-  background: transparent !important;
-}
-
-#app-mount {
-  position: relative !important;
-  isolation: isolate !important;
-}
-
-#app-mount::before {
+body::before {
   content: "";
   position: fixed;
   inset: 0;
   background:
-    linear-gradient(rgba(0, 0, 0, 0.34), rgba(0, 0, 0, 0.66)),
-    var(--bg-image) center / cover no-repeat !important;
-  pointer-events: none;
+    linear-gradient(rgba(0, 0, 0, 0.30), rgba(0, 0, 0, 0.65)),
+    var(--bg-image) center / cover no-repeat;
   z-index: -2;
-}
-
-#app-mount::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background:
-    radial-gradient(circle at 50% 30%, rgba(120, 0, 0, 0.05), transparent 34%),
-    linear-gradient(180deg, rgba(20, 0, 0, 0.03), rgba(0, 0, 0, 0.12));
+  animation: slowDragonDrift 35s ease-in-out infinite;
   pointer-events: none;
-  z-index: -1;
 }
 
-/* =========================================================
-   REMOVE DEFAULT BACKGROUNDS
-   ========================================================= */
-
-[class*="appMount"],
-[class*="app_"],
-[class*="bg_"],
-[class*="layer_"],
-[class*="base_"],
-[class*="container_"],
-[class*="chat_"],
-[class*="content_"],
-[class*="membersWrap_"],
-[class*="members_"],
-[class*="sidebar_"],
-[class*="peopleColumn_"],
-[class*="nowPlayingColumn_"],
-[class*="standardSidebarView_"],
-[class*="contentRegion_"],
-[class*="sidebarRegion_"],
-[class*="scroller_"],
-[class*="privateChannels_"],
-[class*="messagesWrapper_"],
-[class*="chatContent_"],
-[class*="pageWrapper_"],
-[class*="applicationStore_"] {
-  background-color: transparent !important;
+@keyframes slowDragonDrift {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+  100% { transform: scale(1); }
 }
 
-#app-mount > *,
-.appMount-2yBXZl,
-.app-2CXKsg,
-.bg-1QIAus,
-.layer-86YKbF,
-.base-2jDfDU {
-  position: relative !important;
-  z-index: 0 !important;
-}
-
-/* =========================================================
-   PANELS - LIGHTER FOR PERFORMANCE
-   ========================================================= */
+/* =========================
+   PANELS
+   ========================= */
 
 .sidebar-1tnWFu,
-.container-1NXEtd,
 .chat-2ZfjoI,
-.container-ZMc96U,
-.members-3WRCEx,
 .membersWrap-3NUR2t,
-.panels-3wFtMD,
-.container-2o3qEW,
-.content-1jQy2l,
-.container-1eFtFS,
-.applicationStore-2nk7Lo,
-.pageWrapper-2PwDoS,
-.scroller-22Maiq,
-.nowPlayingColumn-1eCBCN,
-.peopleColumn-1wMU14,
-.standardSidebarView-E9Pc3j,
-.contentRegion-3HkfJJ,
-.sidebarRegion-1VBisG,
-.form-3gdLxP,
-.container__2637a,
-.contentRegionScroller__86c79,
-.sidebarRegionScroller__1fa7e {
-  background: linear-gradient(
-    180deg,
-    var(--red-faint),
-    var(--red-faint-2)
-  ) !important;
-  backdrop-filter: blur(4px) saturate(104%) !important;
-  -webkit-backdrop-filter: blur(4px) saturate(104%) !important;
+.container-ZMc96U,
+.panels-3wFtMD {
+  background: linear-gradient(180deg, var(--red-faint), var(--red-faint-2)) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
   border: 1px solid var(--panel-border) !important;
-  box-shadow: 0 0 10px var(--panel-shadow) !important;
+  box-shadow: 0 0 16px rgba(0, 0, 0, 0.3) !important;
 }
 
-/* =========================================================
-   TOP BARS
-   ========================================================= */
-
-.title-31SJ6t,
-.header-3OsQeK,
-.children-3xh0VB,
-.container-ZMc96U.themed-Hp1KC_ {
-  background: rgba(95, 18, 18, 0.12) !important;
-  backdrop-filter: blur(4px) !important;
-  -webkit-backdrop-filter: blur(4px) !important;
-  border-bottom: 1px solid rgba(170, 70, 70, 0.08) !important;
-}
-
-/* =========================================================
-   CHAT-ONLY BLUR
-   ========================================================= */
-
-.chatContent-3KubbW,
-.messagesWrapper-RpOMA3 {
-  backdrop-filter: blur(1px) !important;
-  -webkit-backdrop-filter: blur(1px) !important;
-  background: transparent !important;
-}
-
-/* =========================================================
-   SERVER BAR
-   ========================================================= */
-
-.guilds-2JjMmN,
-.wrapper-1_HaEi,
-.tree-3agP2X,
-.scroller-3X7KbA {
-  background: linear-gradient(
-    180deg,
-    var(--deep-ui-red),
-    var(--deep-ui-red-2)
-  ) !important;
-  border-right: 1px solid rgba(120, 35, 35, 0.12) !important;
-}
-
-.itemsContainer_ef3116,
-.stack_dbd263 {
-  background: transparent !important;
-}
-
-/* =========================================================
+/* =========================
    TEXT
-   ========================================================= */
+   ========================= */
 
 .defaultColor-1EVLSt,
-.markup-eYLPri,
-.contents-3ca1mk,
-.topic-11NuQZ,
-.subtitle-3PyFgf {
+.markup-eYLPri {
   color: var(--text-main) !important;
 }
 
-.description-22d6ux,
-.text-sm-normal-AEQz4v,
-.text-xs-normal-3SiVjE,
-.channelInfo-3jN1ay,
-.repliedTextPreview-1bvxun {
+.description-22d6ux {
   color: var(--text-muted) !important;
 }
 
-a,
-.anchor-1MIwyf,
-.icon-2xnN2Y,
-.icon-1Y-Gpt {
-  color: var(--red-mid) !important;
-}
-
-/* =========================================================
+/* =========================
    NAMES
-   ========================================================= */
+   ========================= */
 
 [class*="username"],
+[class*="name"],
 [class*="nickname"],
-[class*="userTagUsername"],
-.member-2gU6Ar .name-3Vmqxm,
-.layout-1qmrhw .name-3Vmqxm,
-.name-3Uvkvr,
-.username-h_Y3Us,
-.username-1A8OIy {
+[class*="userTagUsername"] {
   color: var(--name-crimson) !important;
   text-shadow:
     0 1px 0 var(--name-shadow),
-    0 0 2px rgba(0, 0, 0, 0.18) !important;
+    0 0 6px rgba(0, 0, 0, 0.4) !important;
 }
 
-.modeSelected-3DmyhH .name-3Uvkvr,
-.interactiveSelected-29CP8y .name-3Uvkvr,
-.selected-1Drb7Z .name-3Uvkvr,
-.member-2gU6Ar:hover .name-3Vmqxm,
-.layout-1qmrhw:hover .name-3Vmqxm {
+[class*="selected"] [class*="name"],
+[class*="modeSelected"] [class*="name"] {
   color: var(--name-crimson-2) !important;
 }
 
-span[style*="color"] {
-  filter: brightness(0.88) saturate(0.95) !important;
-  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.55) !important;
-}
-
-/* =========================================================
-   SELECTED / HOVERED ITEMS
-   ========================================================= */
-
-.modeSelected-3DmyhH,
-.interactiveSelected-29CP8y,
-.selected-1Drb7Z {
-  background: linear-gradient(
-    90deg,
-    rgba(80, 8, 8, 0.22),
-    rgba(45, 4, 4, 0.12)
-  ) !important;
-  border-left: 2px solid var(--red-dark) !important;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.18) !important;
-}
-
-.channel-1Shao0:hover,
-.clickable-28SzVr:hover,
-.interactive-1vLZ_I:hover {
-  background: rgba(65, 8, 8, 0.12) !important;
-}
-
-/* =========================================================
-   LIGHTER HOVER EFFECTS
-   ========================================================= */
-
-button:hover,
-[role="button"]:hover,
-.clickable-28SzVr:hover,
-.channel-1Shao0:hover,
-.member-2gU6Ar:hover,
-.layout-1qmrhw:hover,
-.wrapper-NhbLHG:hover,
-.interactive-1vLZ_I:hover,
-.item-2LIpTv:hover,
-.wrapper-28eC3z:hover,
-.childWrapper-1j_1ub:hover,
-.listItemWrapper__91816:hover,
-.link__95dc0:hover {
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.22) !important;
-  transition:
-    box-shadow 0.14s ease,
-    background 0.14s ease !important;
-}
-
-.message-2CShn3:hover,
-[class*="message"]:hover {
-  background: rgba(255, 255, 255, 0.018) !important;
-  box-shadow: inset 2px 0 0 rgba(0, 0, 0, 0.32) !important;
-}
-
-/* =========================================================
-   BUTTONS
-   ========================================================= */
-
-.button-12Fmur,
-.lookFilled-yCfaCM {
-  background: linear-gradient(
-    180deg,
-    rgba(105, 16, 16, 0.96),
-    rgba(58, 7, 7, 0.96)
-  ) !important;
-  color: #f5efef !important;
-  border: 1px solid rgba(150, 50, 50, 0.18) !important;
-}
-
-.button-12Fmur:hover,
-.lookFilled-yCfaCM:hover {
-  background: linear-gradient(
-    180deg,
-    rgba(118, 18, 18, 0.98),
-    rgba(68, 8, 8, 0.98)
-  ) !important;
-}
-
-/* =========================================================
-   INPUT AREA - OPTIMIZED
-   ========================================================= */
-
-.channelTextArea-1FufC0,
-.scrollableContainer-15eg7h,
-.themedBackground-1aP0xJ,
-.base-3bcbY3 {
-  background: linear-gradient(
-    180deg,
-    var(--deep-ui-red),
-    var(--deep-ui-red-2)
-  ) !important;
-  border-color: rgba(120, 35, 35, 0.22) !important;
-}
+/* =========================
+   INPUT BAR OUTER
+   ========================= */
 
 .channelTextArea-1FufC0,
 .scrollableContainer-15eg7h {
-  border: 1px solid rgba(120, 35, 35, 0.22) !important;
+  background: linear-gradient(
+    180deg,
+    var(--chatbar-red-1),
+    var(--chatbar-red-2)
+  ) !important;
+  border: 1px solid var(--chatbar-border) !important;
   box-shadow:
-    0 0 0 1px rgba(0, 0, 0, 0.22),
-    0 0 10px rgba(0, 0, 0, 0.24) !important;
+    0 0 0 1px rgba(0, 0, 0, 0.28),
+    0 0 14px rgba(0, 0, 0, 0.30),
+    0 0 10px var(--soft-red-glow) !important;
   border-radius: 12px !important;
 }
+
+/* =========================
+   INPUT BAR INNER RESTORE
+   ========================= */
 
 .textArea__74543,
 .textAreaSlate__8f5a9,
 .editor__66464,
 .slateTextArea-27tjG0,
-.placeholder-1rCBhr,
 .fontSize16Padding-XoMpjI {
   background: transparent !important;
-  color: #e9dcdc !important;
+  color: #f2ebeb !important;
 }
 
+/* kill annoying inner gray layers without using huge laggy wildcards */
 .channelTextArea-1FufC0 > div,
-.scrollableContainer-15eg7h > div {
+.scrollableContainer-15eg7h > div,
+.channelTextArea-1FufC0 > div > div,
+.scrollableContainer-15eg7h > div > div {
   background: transparent !important;
+}
+
+.placeholder-1rCBhr {
+  color: #d6bcbc !important;
 }
 
 .attachButton-_ACFSu,
-.buttonContainer-1sjtPU {
+.buttonContainer-1sjtPU,
+.buttons-uaqb-5 {
   background: transparent !important;
 }
 
 .channelTextArea-1FufC0:focus-within,
 .scrollableContainer-15eg7h:focus-within {
-  border: 1px solid rgba(160, 40, 40, 0.34) !important;
+  border: 1px solid rgba(160, 40, 40, 0.38) !important;
   box-shadow:
-    0 0 0 1px rgba(120, 20, 20, 0.30),
-    0 0 12px rgba(0, 0, 0, 0.26) !important;
+    0 0 0 1px rgba(120, 20, 20, 0.35),
+    0 0 16px rgba(0, 0, 0, 0.34),
+    0 0 12px rgba(120, 18, 18, 0.14) !important;
 }
 
-/* =========================================================
+/* =========================
+   PROFILE
+   ========================= */
+
+[class*="userProfileInner"] {
+  background: linear-gradient(
+    180deg,
+    var(--profile-red-1),
+    var(--profile-red-2),
+    var(--profile-red-3)
+  ) !important;
+  border: 1px solid rgba(168, 62, 62, 0.22) !important;
+}
+
+/* =========================
    SCROLLBAR
-   ========================================================= */
+   ========================= */
 
 ::-webkit-scrollbar {
-  width: 6px !important;
-  height: 6px !important;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(
-    180deg,
-    var(--red-darker),
-    var(--red-black)
-  ) !important;
-  border-radius: 999px !important;
-  border: none !important;
+  background: linear-gradient(180deg, var(--red-darker), var(--red-black));
+  border-radius: 999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(
-    180deg,
-    var(--red-dark),
-    var(--red-deepest)
-  ) !important;
+  background: linear-gradient(180deg, var(--red-dark), var(--red-deepest));
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(25, 0, 0, 0.18) !important;
-  border-radius: 999px !important;
+  background: rgba(25, 0, 0, 0.18);
+  border-radius: 999px;
 }
 
 * {
-  scrollbar-width: thin !important;
-  scrollbar-color: var(--red-darker) rgba(25, 0, 0, 0.18) !important;
+  scrollbar-width: thin;
+  scrollbar-color: var(--red-darker) rgba(25, 0, 0, 0.18);
 }
