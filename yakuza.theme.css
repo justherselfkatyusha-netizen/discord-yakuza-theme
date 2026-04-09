@@ -8,9 +8,9 @@
   --red-mid: #741414;
   --red-name: #661010;
 
-  --red-faint: rgba(110, 16, 16, 0.14);
-  --red-faint-2: rgba(130, 20, 20, 0.18);
-  --red-faint-3: rgba(150, 25, 25, 0.22);
+  --red-faint: rgba(110, 16, 16, 0.12);
+  --red-faint-2: rgba(130, 20, 20, 0.16);
+  --red-faint-3: rgba(150, 25, 25, 0.20);
 
   --panel-border: rgba(170, 60, 60, 0.14);
   --panel-shadow: rgba(0, 0, 0, 0.34);
@@ -20,89 +20,84 @@
 }
 
 /* =========================================================
-   BASE BACKGROUND FIX
+   HARD WALLPAPER FIX
    ========================================================= */
 
 html,
 body,
-#app-mount,
-.appMount-2yBXZl,
-.app-2CXKsg,
-.bg-1QIAus,
-.layer-86YKbF,
-.base-2jDfDU,
-.theme-dark,
-.visual-refresh,
-.layers-OrUESM {
+#app-mount {
   background: transparent !important;
+  min-height: 100% !important;
 }
 
-/* real wallpaper layer */
-#app-mount::before {
+#app-mount {
+  position: relative !important;
+  isolation: isolate !important;
+}
+
+/* wallpaper layer */
+body::before {
   content: "";
   position: fixed;
   inset: 0;
   background:
-    linear-gradient(rgba(0, 0, 0, 0.34), rgba(0, 0, 0, 0.62)),
-    url("https://i.imgur.com/Q2qoq7L.jpeg") center/cover no-repeat fixed;
+    linear-gradient(rgba(0, 0, 0, 0.30), rgba(0, 0, 0, 0.62)),
+    var(--bg-image) center / cover no-repeat fixed;
   pointer-events: none;
   z-index: -2;
 }
 
-/* cinematic overlay above wallpaper */
-#app-mount::after {
+/* red cinematic tint */
+body::after {
   content: "";
   position: fixed;
   inset: 0;
   background:
     radial-gradient(circle at 50% 30%, rgba(120, 0, 0, 0.10), transparent 36%),
-    linear-gradient(180deg, rgba(20, 0, 0, 0.06), rgba(0, 0, 0, 0.22));
+    linear-gradient(180deg, rgba(20, 0, 0, 0.05), rgba(0, 0, 0, 0.18));
   pointer-events: none;
   z-index: -1;
 }
 
-/* make major app containers transparent so wallpaper shows through */
+/* Nuke backgrounds from common Discord layers */
+[class*="appMount"],
+[class*="app_"],
+[class*="bg_"],
+[class*="layer_"],
+[class*="base_"],
+[class*="container_"],
+[class*="chat_"],
+[class*="content_"],
+[class*="membersWrap_"],
+[class*="members_"],
+[class*="sidebar_"],
+[class*="peopleColumn_"],
+[class*="nowPlayingColumn_"],
+[class*="standardSidebarView_"],
+[class*="contentRegion_"],
+[class*="sidebarRegion_"],
+[class*="scroller_"],
+[class*="privateChannels_"],
+[class*="messagesWrapper_"],
+[class*="chatContent_"],
+[class*="pageWrapper_"],
+[class*="applicationStore_"] {
+  background-color: transparent !important;
+}
+
+/* still keep key layout above bg */
+#app-mount > *,
+.appMount-2yBXZl,
 .app-2CXKsg,
 .bg-1QIAus,
 .layer-86YKbF,
-.base-2jDfDU,
-.sidebar-1tnWFu,
-.chat-2ZfjoI,
-.container-ZMc96U,
-.membersWrap-3NUR2t,
-.standardSidebarView-E9Pc3j,
-.contentRegion-3HkfJJ,
-.sidebarRegion-1VBisG,
-.container__133bf,
-.wrapper__9916c,
-.bg__12180,
-.privateChannels-oVe7HL,
-.content-1SgpWY,
-.chatContent-3KubbW,
-.messagesWrapper-RpOMA3,
-.contentRegionScroller__86c79,
-.sidebarRegionScroller__1fa7e,
-.container-36u7Lw,
-.applicationStore-2nk7Lo,
-.pageWrapper-2PwDoS,
-.nowPlayingColumn-1eCBCN,
-.peopleColumn-1wMU14 {
-  background: transparent !important;
-}
-
-/* keep actual UI above the bg layers */
-#app-mount,
-.appMount-2yBXZl,
-.app-2CXKsg,
-.base-2jDfDU,
-.layer-86YKbF,
-.bg-1QIAus {
-  position: relative;
-  z-index: 0;
+.base-2jDfDU {
+  position: relative !important;
+  z-index: 0 !important;
 }
 
 /* =========================================================
-   FAINT RED AMBIENT ANIMATION
+   AMBIENT RED PANEL ANIMATION
    ========================================================= */
 
 @keyframes yakuzaRedPulse {
@@ -124,7 +119,7 @@ body,
 }
 
 /* =========================================================
-   GLASS PANELS
+   GLASS RED PANELS
    ========================================================= */
 
 .sidebar-1tnWFu,
@@ -150,8 +145,7 @@ body,
 .scrollableContainer-15eg7h,
 .container__2637a,
 .contentRegionScroller__86c79,
-.sidebarRegionScroller__1fa7e,
-.container-36u7Lw {
+.sidebarRegionScroller__1fa7e {
   background: linear-gradient(
     180deg,
     var(--red-faint),
@@ -166,12 +160,12 @@ body,
   animation: yakuzaRedPulse 7s ease-in-out infinite !important;
 }
 
-/* top bars / headers */
+/* top bars */
 .title-31SJ6t,
 .header-3OsQeK,
 .children-3xh0VB,
 .container-ZMc96U.themed-Hp1KC_ {
-  background: rgba(95, 18, 18, 0.16) !important;
+  background: rgba(95, 18, 18, 0.14) !important;
   backdrop-filter: blur(8px) !important;
   -webkit-backdrop-filter: blur(8px) !important;
   border-bottom: 1px solid rgba(170, 70, 70, 0.10) !important;
@@ -245,7 +239,7 @@ a,
 }
 
 /* =========================================================
-   BLACK GLOW HOVER EFFECT
+   BLACK HOVER GLOW
    ========================================================= */
 
 button:hover,
@@ -347,29 +341,4 @@ button:hover,
 * {
   scrollbar-width: thin !important;
   scrollbar-color: var(--red-darker) rgba(25, 0, 0, 0.18) !important;
-}
-
-/* =========================================================
-   EXTRA LITTLE TOUCHES
-   ========================================================= */
-
-.panels-3wFtMD,
-.sidebar-1tnWFu,
-.membersWrap-3NUR2t,
-.container-ZMc96U {
-  box-shadow:
-    0 0 18px rgba(0, 0, 0, 0.28),
-    0 0 12px rgba(90, 0, 0, 0.08) !important;
-}
-
-.wrapper-28eC3z:hover,
-.childWrapper-1j_1ub:hover {
-  background: rgba(70, 8, 8, 0.18) !important;
-}
-
-.container-36u7Lw,
-.content-1SgpWY,
-.chatContent-3KubbW,
-.messagesWrapper-RpOMA3 {
-  background: transparent !important;
 }
