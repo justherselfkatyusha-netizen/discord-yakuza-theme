@@ -1,7 +1,7 @@
 /**
  * @name Yakuza Theme Clean Fixed Plus
  * @author Katyusha
- * @version 2.3.0
+ * @version 2.4.0
  * @description Stable red dragon Discord theme - cleaner layout + polish
  */
 
@@ -19,7 +19,7 @@
   --glass-soft: rgba(90, 10, 10, 0.10);
   --glass-soft-2: rgba(120, 18, 18, 0.13);
   --glass-sidebar: rgba(55, 6, 6, 0.32);
-  --glass-chatbar: rgba(28, 3, 3, 0.92);
+  --glass-chatbar: rgba(88, 8, 8, 0.34);
   --glass-server: rgba(28, 3, 3, 0.90);
 
   --panel-border: rgba(170, 60, 60, 0.10);
@@ -32,6 +32,16 @@
 
   --soft-glow: 0 0 10px rgba(120, 12, 12, 0.16);
   --soft-glow-2: 0 0 16px rgba(140, 16, 16, 0.14);
+
+  /* blended write box */
+  --chatbar-fill-1: rgba(108, 10, 10, 0.26);
+  --chatbar-fill-2: rgba(72, 7, 7, 0.34);
+  --chatbar-border: rgba(125, 24, 24, 0.52);
+
+  /* reply preview */
+  --reply-bg: rgba(70, 8, 8, 0.18);
+  --reply-bg-hover: rgba(82, 10, 10, 0.22);
+  --reply-border: rgba(120, 24, 24, 0.24);
 }
 
 /* =========================
@@ -62,7 +72,6 @@ body,
   z-index: 0;
 }
 
-/* subtle readability/vignette layer */
 #app-mount::after {
   content: "";
   position: fixed;
@@ -109,7 +118,6 @@ body,
    LEFT SIDES
    ========================= */
 
-/* server bar */
 [class*="guilds_"] {
   background: linear-gradient(
     180deg,
@@ -119,7 +127,6 @@ body,
   border-right: 1px solid rgba(120, 35, 35, 0.10) !important;
 }
 
-/* channels / dms list side */
 [class*="sidebar_"],
 [class*="privateChannels_"],
 [class*="scroller_"][class*="thin_"] {
@@ -131,7 +138,6 @@ body,
   border-right: 1px solid rgba(120, 35, 35, 0.08) !important;
 }
 
-/* bottom profile bar */
 [class*="panels_"] {
   background: linear-gradient(
     180deg,
@@ -155,7 +161,6 @@ body,
   box-shadow: none !important;
 }
 
-/* top bar */
 [class*="title_"],
 [class*="header_"],
 [class*="themed_"] {
@@ -164,7 +169,6 @@ body,
   box-shadow: none !important;
 }
 
-/* member list on right */
 [class*="membersWrap_"],
 [class*="members_"] {
   background: linear-gradient(
@@ -194,7 +198,6 @@ body,
     border-color 0.16s ease !important;
 }
 
-/* only subtle hover */
 [class*="link_"]:hover,
 [class*="interactive_"]:hover,
 [class*="layout_"]:hover,
@@ -206,7 +209,6 @@ button:hover,
   box-shadow: none !important;
 }
 
-/* selected items */
 [class*="modeSelected"],
 [class*="interactiveSelected"],
 [class*="selected"] {
@@ -222,7 +224,7 @@ button:hover,
 }
 
 /* =========================
-   MESSAGES - CLEAN, NOT BOXED
+   MESSAGES
    ========================= */
 
 [class*="messageListItem_"],
@@ -237,17 +239,57 @@ button:hover,
   box-shadow: inset 2px 0 0 rgba(120, 20, 20, 0.18) !important;
 }
 
-/* embeds / replies / code blocks keep darker */
+/* embeds / code */
 blockquote,
 pre,
 [class*="embedFull_"],
 [class*="wrapperAudio_"],
-[class*="repliedMessage_"],
 [class*="markupRtl_"] pre,
 [class*="markup_"] pre {
   background: rgba(20, 2, 2, 0.72) !important;
   border: 1px solid rgba(120, 35, 35, 0.14) !important;
   box-shadow: none !important;
+}
+
+/* =========================
+   REPLY PREVIEW FIX
+   ========================= */
+
+[class*="repliedMessage_"],
+[class*="replying_"] [class*="message_"],
+[class*="attachedBars_"] {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+[class*="repliedMessage_"] {
+  padding: 2px 6px !important;
+  border-radius: 8px !important;
+  background: linear-gradient(
+    90deg,
+    var(--reply-bg),
+    rgba(40, 4, 4, 0.10)
+  ) !important;
+  border: 1px solid var(--reply-border) !important;
+}
+
+[class*="repliedMessage_"]:hover {
+  background: linear-gradient(
+    90deg,
+    var(--reply-bg-hover),
+    rgba(50, 5, 5, 0.14)
+  ) !important;
+}
+
+[class*="repliedTextPreview_"],
+[class*="repliedTextPreview"] {
+  color: #e6cfcf !important;
+}
+
+[class*="replyBadge_"],
+[class*="replyAvatar_"] {
+  filter: brightness(0.95) saturate(0.95) !important;
 }
 
 /* =========================
@@ -264,14 +306,20 @@ textarea,
   box-shadow: none !important;
 }
 
-/* search bar polish */
 [class*="searchBar_"],
 [class*="searchBarComponent_"] {
   border-radius: 10px !important;
   box-shadow: inset 0 0 0 1px rgba(120, 35, 35, 0.10) !important;
 }
 
-/* write box */
+/* =========================
+   WRITE BOX BLENDED
+   ========================= */
+
+[class*="form_"]::before {
+  display: none !important;
+}
+
 [class*="channelTextArea_"],
 [class*="channelTextArea"],
 [class*="scrollableContainer_"],
@@ -280,15 +328,16 @@ textarea,
 [class*="themedBackground"] {
   background: linear-gradient(
     180deg,
-    rgba(32, 4, 4, 0.94),
-    rgba(20, 2, 2, 0.94)
+    var(--chatbar-fill-1),
+    var(--chatbar-fill-2)
   ) !important;
-  border: 1px solid rgba(120, 35, 35, 0.18) !important;
+  border: 1px solid var(--chatbar-border) !important;
   border-radius: 14px !important;
   box-shadow:
-    0 0 0 1px rgba(0, 0, 0, 0.18),
-    0 0 10px rgba(0, 0, 0, 0.18),
-    0 0 14px rgba(80, 8, 8, 0.08) !important;
+    0 0 0 1px rgba(0, 0, 0, 0.10),
+    0 0 12px rgba(0, 0, 0, 0.10) !important;
+  backdrop-filter: blur(1px) saturate(105%) !important;
+  -webkit-backdrop-filter: blur(1px) saturate(105%) !important;
 }
 
 [class*="textArea"],
@@ -300,12 +349,18 @@ textarea,
   color: var(--text-main) !important;
 }
 
+[class*="channelTextArea"] > div,
+[class*="scrollableContainer"] > div,
+[class*="editor"] > div,
+[class*="textArea"] > div {
+  background: transparent !important;
+}
+
 [class*="channelTextArea"]:focus-within {
-  border: 1px solid rgba(160, 40, 40, 0.28) !important;
+  border: 1px solid rgba(160, 40, 40, 0.58) !important;
   box-shadow:
-    0 0 0 1px rgba(120, 20, 20, 0.24),
-    0 0 12px rgba(0, 0, 0, 0.22),
-    0 0 16px rgba(120, 12, 12, 0.12) !important;
+    0 0 0 1px rgba(120, 20, 20, 0.18),
+    0 0 10px rgba(90, 8, 8, 0.14) !important;
 }
 
 [class*="placeholder"],
@@ -313,7 +368,6 @@ textarea,
   color: #ead7d7 !important;
 }
 
-/* buttons inside input */
 [class*="channelTextArea"] button,
 [class*="channelTextArea"] [role="button"] {
   background: transparent !important;
@@ -346,7 +400,6 @@ a,
   color: var(--red-mid) !important;
 }
 
-/* icon cohesion */
 [class*="icon_"],
 svg {
   transition: color 0.16s ease, opacity 0.16s ease !important;
