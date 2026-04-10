@@ -1,87 +1,483 @@
-/**
- * @name Yakuza Theme Lite
- * @author Katyusha
- * @version 1.0.0
- * @description Lightweight red dragon Discord theme
- */
-
 :root {
   --bg-image: url("https://i.imgur.com/Q2qoq7L.jpeg");
-  --panel: rgba(35, 4, 4, 0.88);
-  --panel-2: rgba(55, 8, 8, 0.88);
-  --panel-border: rgba(150, 50, 50, 0.22);
-  --text-main: #f3eaea;
-  --text-muted: #d1b7b7;
-  --name-color: #c98d8d;
-  --name-color-2: #e0b0b0;
-  --chatbar: rgba(28, 4, 4, 0.95);
+
+  --red-black: #240303;
+  --red-deepest: #190202;
+  --red-darker: #4a0909;
+  --red-dark: #5e0d0d;
+  --red-mid: #741414;
+
+  --red-faint: rgba(110, 16, 16, 0.10);
+  --red-faint-2: rgba(130, 20, 20, 0.14);
+
+  --panel-border: rgba(170, 60, 60, 0.14);
+  --panel-shadow: rgba(0, 0, 0, 0.30);
+
+  --text-main: #f2ebeb;
+  --text-muted: #ccbaba;
+
+  --deep-ui-red: rgba(28, 3, 3, 0.94);
+  --deep-ui-red-2: rgba(40, 5, 5, 0.90);
+
+  /* fixed readable names */
+  --name-crimson: #c78f8f;
+  --name-crimson-2: #e2b0b0;
+  --name-shadow: rgba(0, 0, 0, 0.78);
 }
 
-html, body, #app-mount {
+/* =========================================================
+   BACKGROUND + ANIMATION
+   ========================================================= */
+
+html,
+body,
+#app-mount {
   background: transparent !important;
+  min-height: 100% !important;
 }
 
 #app-mount {
-  background:
-    linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.58)),
-    var(--bg-image) center/cover no-repeat !important;
+  position: relative !important;
+  isolation: isolate !important;
 }
 
+@keyframes slowDragonDrift {
+  0% {
+    background-position: 50% 50%;
+    transform: scale(1);
+  }
+  50% {
+    background-position: 52% 48%;
+    transform: scale(1.015);
+  }
+  100% {
+    background-position: 50% 50%;
+    transform: scale(1);
+  }
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.30), rgba(0, 0, 0, 0.65)),
+    var(--bg-image) center / cover no-repeat;
+  pointer-events: none;
+  z-index: -2;
+  animation: slowDragonDrift 35s ease-in-out infinite;
+  will-change: background-position, transform;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 30%, rgba(120, 0, 0, 0.08), transparent 36%),
+    linear-gradient(180deg, rgba(20, 0, 0, 0.04), rgba(0, 0, 0, 0.18));
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* =========================================================
+   REMOVE DEFAULT BACKGROUNDS
+   ========================================================= */
+
+[class*="appMount"],
 [class*="app_"],
 [class*="bg_"],
-[class*="layer_"] {
+[class*="layer_"],
+[class*="base_"],
+[class*="container_"],
+[class*="chat_"],
+[class*="content_"],
+[class*="membersWrap_"],
+[class*="members_"],
+[class*="sidebar_"],
+[class*="peopleColumn_"],
+[class*="nowPlayingColumn_"],
+[class*="standardSidebarView_"],
+[class*="contentRegion_"],
+[class*="sidebarRegion_"],
+[class*="scroller_"],
+[class*="privateChannels_"],
+[class*="messagesWrapper_"],
+[class*="chatContent_"],
+[class*="pageWrapper_"],
+[class*="applicationStore_"] {
+  background-color: transparent !important;
+}
+
+#app-mount > *,
+.appMount-2yBXZl,
+.app-2CXKsg,
+.bg-1QIAus,
+.layer-86YKbF,
+.base-2jDfDU {
+  position: relative !important;
+  z-index: 0 !important;
+}
+
+/* =========================================================
+   PANELS
+   ========================================================= */
+
+.sidebar-1tnWFu,
+.container-1NXEtd,
+.chat-2ZfjoI,
+.container-ZMc96U,
+.members-3WRCEx,
+.membersWrap-3NUR2t,
+.panels-3wFtMD,
+.container-2o3qEW,
+.content-1jQy2l,
+.container-1eFtFS,
+.applicationStore-2nk7Lo,
+.pageWrapper-2PwDoS,
+.scroller-22Maiq,
+.nowPlayingColumn-1eCBCN,
+.peopleColumn-1wMU14,
+.standardSidebarView-E9Pc3j,
+.contentRegion-3HkfJJ,
+.sidebarRegion-1VBisG,
+.form-3gdLxP,
+.container__2637a,
+.contentRegionScroller__86c79,
+.sidebarRegionScroller__1fa7e {
+  background: linear-gradient(
+    180deg,
+    var(--red-faint),
+    var(--red-faint-2)
+  ) !important;
+  backdrop-filter: blur(6px) saturate(106%) !important;
+  -webkit-backdrop-filter: blur(6px) saturate(106%) !important;
+  border: 1px solid var(--panel-border) !important;
+  box-shadow:
+    0 0 12px var(--panel-shadow),
+    0 0 8px rgba(85, 0, 0, 0.06) !important;
+}
+
+/* =========================================================
+   TOP BARS
+   ========================================================= */
+
+.title-31SJ6t,
+.header-3OsQeK,
+.children-3xh0VB,
+.container-ZMc96U.themed-Hp1KC_ {
+  background: rgba(95, 18, 18, 0.14) !important;
+  backdrop-filter: blur(5px) !important;
+  -webkit-backdrop-filter: blur(5px) !important;
+  border-bottom: 1px solid rgba(170, 70, 70, 0.10) !important;
+}
+
+/* =========================================================
+   CHAT-ONLY BLUR
+   ========================================================= */
+
+.chatContent-3KubbW,
+.messagesWrapper-RpOMA3 {
+  backdrop-filter: blur(1px) !important;
+  -webkit-backdrop-filter: blur(1px) !important;
   background: transparent !important;
 }
 
-[class*="sidebar_"],
-[class*="chat_"],
-[class*="membersWrap_"],
-[class*="container_"],
-[class*="panels_"] {
-  background: var(--panel) !important;
-  border: 1px solid var(--panel-border) !important;
-  box-shadow: none !important;
-  backdrop-filter: none !important;
+/* =========================================================
+   SERVER BAR
+   ========================================================= */
+
+.guilds-2JjMmN,
+.wrapper-1_HaEi,
+.tree-3agP2X,
+.scroller-3X7KbA {
+  background: linear-gradient(
+    180deg,
+    var(--deep-ui-red),
+    var(--deep-ui-red-2)
+  ) !important;
+  border-right: 1px solid rgba(120, 35, 35, 0.14) !important;
 }
 
-[class*="channelTextArea"] {
-  background: var(--chatbar) !important;
-  border: 1px solid var(--panel-border) !important;
-  box-shadow: none !important;
+.itemsContainer_ef3116,
+.stack_dbd263 {
+  background: transparent !important;
 }
+
+/* =========================================================
+   TEXT
+   ========================================================= */
+
+.defaultColor-1EVLSt,
+.markup-eYLPri,
+.contents-3ca1mk,
+.topic-11NuQZ,
+.subtitle-3PyFgf {
+  color: var(--text-main) !important;
+}
+
+.description-22d6ux,
+.text-sm-normal-AEQz4v,
+.text-xs-normal-3SiVjE,
+.channelInfo-3jN1ay,
+.repliedTextPreview-1bvxun {
+  color: var(--text-muted) !important;
+}
+
+a,
+.anchor-1MIwyf,
+.icon-2xnN2Y,
+.icon-1Y-Gpt {
+  color: var(--red-mid) !important;
+}
+
+/* =========================================================
+   NAMES - FIXED
+   ========================================================= */
 
 [class*="username"],
 [class*="name"],
 [class*="nickname"],
-[class*="userTagUsername"] {
-  color: var(--name-color) !important;
-  text-shadow: none !important;
+[class*="headerText"],
+[class*="userTag"],
+[class*="member"] [class*="name"],
+[class*="layout"] [class*="name"],
+[class*="memberInner"] [class*="name"],
+[class*="title"] [class*="name"] {
+  color: var(--name-crimson) !important;
+  text-shadow:
+    0 1px 0 var(--name-shadow),
+    0 0 4px rgba(0, 0, 0, 0.20) !important;
 }
 
+.username-h_Y3Us,
+.username-1A8OIy,
+.name-3Uvkvr,
+.title-17SveM,
+.headerText-2z4IhQ,
+.nickname-3P1RuO,
+.memberInner-2CPc3V,
+.member-2gU6Ar .name-3Vmqxm,
+.layout-1qmrhw .name-3Vmqxm,
+.markup-eYLPri strong {
+  color: var(--name-crimson) !important;
+  text-shadow:
+    0 1px 0 var(--name-shadow),
+    0 0 4px rgba(0, 0, 0, 0.20) !important;
+}
+
+.modeSelected-3DmyhH .name-3Uvkvr,
+.interactiveSelected-29CP8y .name-3Uvkvr,
+.selected-1Drb7Z .name-3Uvkvr,
 [class*="selected"] [class*="name"],
+[class*="interactiveSelected"] [class*="name"],
 [class*="modeSelected"] [class*="name"] {
-  color: var(--name-color-2) !important;
+  color: var(--name-crimson-2) !important;
 }
 
-[class*="defaultColor"],
-[class*="markup"] {
-  color: var(--text-main) !important;
+span[style*="color"] {
+  filter: brightness(0.88) saturate(1.00) !important;
+  text-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.60),
+    0 0 3px rgba(0, 0, 0, 0.10) !important;
 }
 
-[class*="description"] {
-  color: var(--text-muted) !important;
+/* =========================================================
+   SELECTED / HOVERED ITEMS
+   ========================================================= */
+
+.modeSelected-3DmyhH,
+.interactiveSelected-29CP8y,
+.selected-1Drb7Z,
+[class*="selected"],
+[class*="modeSelected"],
+[class*="interactiveSelected"] {
+  background: linear-gradient(
+    90deg,
+    rgba(80, 8, 8, 0.24),
+    rgba(45, 4, 4, 0.14)
+  ) !important;
+  border-left: 2px solid var(--red-dark) !important;
+  box-shadow:
+    0 0 8px rgba(0, 0, 0, 0.18),
+    0 0 8px rgba(100, 0, 0, 0.08) !important;
 }
 
-[class*="userProfileInner"] {
-  background: linear-gradient(180deg, var(--panel), var(--panel-2)) !important;
-  border: 1px solid var(--panel-border) !important;
+.channel-1Shao0:hover,
+.clickable-28SzVr:hover,
+.interactive-1vLZ_I:hover {
+  background: rgba(65, 8, 8, 0.14) !important;
 }
+
+/* =========================================================
+   HOVER GLOW
+   ========================================================= */
+
+button:hover,
+[role="button"]:hover,
+.clickable-28SzVr:hover,
+.channel-1Shao0:hover,
+.member-2gU6Ar:hover,
+.layout-1qmrhw:hover,
+.wrapper-NhbLHG:hover,
+.interactive-1vLZ_I:hover,
+.item-2LIpTv:hover,
+.wrapper-28eC3z:hover,
+.childWrapper-1j_1ub:hover,
+.listItemWrapper__91816:hover,
+.link__95dc0:hover {
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.10),
+    0 0 10px rgba(0, 0, 0, 0.24),
+    0 0 16px rgba(0, 0, 0, 0.12) !important;
+  transition:
+    box-shadow 0.16s ease,
+    background 0.16s ease !important;
+}
+
+.message-2CShn3:hover,
+[class*="message"]:hover {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.02),
+    rgba(90, 0, 0, 0.04)
+  ) !important;
+  box-shadow:
+    inset 2px 0 0 rgba(0, 0, 0, 0.34),
+    0 0 10px rgba(0, 0, 0, 0.14) !important;
+}
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+.button-12Fmur,
+.lookFilled-yCfaCM {
+  background: linear-gradient(
+    180deg,
+    rgba(105, 16, 16, 0.96),
+    rgba(58, 7, 7, 0.96)
+  ) !important;
+  color: #f5efef !important;
+  border: 1px solid rgba(150, 50, 50, 0.18) !important;
+}
+
+.button-12Fmur:hover,
+.lookFilled-yCfaCM:hover {
+  background: linear-gradient(
+    180deg,
+    rgba(118, 18, 18, 0.98),
+    rgba(68, 8, 8, 0.98)
+  ) !important;
+}
+
+/* =========================================================
+   INPUT AREA - KEEP THE GOOD RED WRITEBOX
+   ========================================================= */
+
+.channelTextArea-1FufC0,
+.scrollableContainer-15eg7h,
+.themedBackground-1aP0xJ,
+.form-3gdLxP:before,
+.base-3bcbY3,
+[class*="channelTextArea"],
+[class*="scrollableContainer"],
+[class*="themedBackground"],
+[class*="attachButtonInner"],
+[class*="inner"] {
+  background: linear-gradient(
+    180deg,
+    var(--deep-ui-red),
+    var(--deep-ui-red-2)
+  ) !important;
+  border-color: rgba(120, 35, 35, 0.22) !important;
+}
+
+.channelTextArea-1FufC0,
+[class*="channelTextArea"] {
+  border: 1px solid rgba(120, 35, 35, 0.22) !important;
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.24),
+    0 0 12px rgba(0, 0, 0, 0.24) !important;
+  border-radius: 12px !important;
+}
+
+.textArea__74543,
+.textAreaSlate__8f5a9,
+.editor__66464,
+[class*="textArea"],
+[class*="editor"],
+[class*="slateTextArea"],
+[class*="placeholder"],
+[class*="input"] {
+  background: transparent !important;
+}
+
+.channelTextArea-1FufC0 > div,
+.scrollableContainer-15eg7h > div,
+[class*="channelTextArea"] > div,
+[class*="scrollableContainer"] > div,
+[class*="editor"] > div,
+[class*="textArea"] > div {
+  background: transparent !important;
+}
+
+[class*="channelTextArea"] button,
+[class*="channelTextArea"] [role="button"],
+.attachButton-_ACFSu,
+.buttonContainer-1sjtPU {
+  background: transparent !important;
+}
+
+.channelTextArea-1FufC0:focus-within,
+[class*="channelTextArea"]:focus-within {
+  border: 1px solid rgba(160, 40, 40, 0.34) !important;
+  box-shadow:
+    0 0 0 1px rgba(120, 20, 20, 0.36),
+    0 0 14px rgba(0, 0, 0, 0.28) !important;
+}
+
+.placeholder-1rCBhr,
+.slateTextArea-27tjG0,
+.fontSize16Padding-XoMpjI,
+[class*="placeholder"],
+[class*="slateTextArea"] {
+  color: #e9dcdc !important;
+}
+
+/* =========================================================
+   SCROLLBAR
+   ========================================================= */
 
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 6px !important;
+  height: 6px !important;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #4e0b0b;
-  border-radius: 999px;
+  background: linear-gradient(
+    180deg,
+    var(--red-darker),
+    var(--red-black)
+  ) !important;
+  border-radius: 999px !important;
+  border: none !important;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    180deg,
+    var(--red-dark),
+    var(--red-deepest)
+  ) !important;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(25, 0, 0, 0.18) !important;
+  border-radius: 999px !important;
+}
+
+* {
+  scrollbar-width: thin !important;
+  scrollbar-color: var(--red-darker) rgba(25, 0, 0, 0.18) !important;
 }
