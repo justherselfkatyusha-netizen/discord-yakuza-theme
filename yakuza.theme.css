@@ -1,3 +1,10 @@
+/**
+ * @name Yakuza Theme Fixed
+ * @author Katyusha
+ * @version 2.0.0
+ * @description Stable red dragon Discord theme
+ */
+
 :root {
   --bg-image: url("https://i.imgur.com/Q2qoq7L.jpeg");
 
@@ -11,7 +18,7 @@
   --red-faint-2: rgba(130, 20, 20, 0.14);
 
   --panel-border: rgba(170, 60, 60, 0.14);
-  --panel-shadow: rgba(0, 0, 0, 0.30);
+  --panel-shadow: rgba(0, 0, 0, 0.22);
 
   --text-main: #f2ebeb;
   --text-muted: #ccbaba;
@@ -19,15 +26,14 @@
   --deep-ui-red: rgba(28, 3, 3, 0.94);
   --deep-ui-red-2: rgba(40, 5, 5, 0.90);
 
-  /* fixed readable names */
   --name-crimson: #c78f8f;
   --name-crimson-2: #e2b0b0;
   --name-shadow: rgba(0, 0, 0, 0.78);
 }
 
-/* =========================================================
-   BACKGROUND + ANIMATION
-   ========================================================= */
+/* =========================
+   BASE
+   ========================= */
 
 html,
 body,
@@ -37,54 +43,12 @@ body,
 }
 
 #app-mount {
-  position: relative !important;
-  isolation: isolate !important;
-}
-
-@keyframes slowDragonDrift {
-  0% {
-    background-position: 50% 50%;
-    transform: scale(1);
-  }
-  50% {
-    background-position: 52% 48%;
-    transform: scale(1.015);
-  }
-  100% {
-    background-position: 50% 50%;
-    transform: scale(1);
-  }
-}
-
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
   background:
     linear-gradient(rgba(0, 0, 0, 0.30), rgba(0, 0, 0, 0.65)),
-    var(--bg-image) center / cover no-repeat;
-  pointer-events: none;
-  z-index: -2;
-  animation: slowDragonDrift 35s ease-in-out infinite;
-  will-change: background-position, transform;
+    var(--bg-image) center / cover no-repeat !important;
 }
 
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background:
-    radial-gradient(circle at 50% 30%, rgba(120, 0, 0, 0.08), transparent 36%),
-    linear-gradient(180deg, rgba(20, 0, 0, 0.04), rgba(0, 0, 0, 0.18));
-  pointer-events: none;
-  z-index: -1;
-}
-
-/* =========================================================
-   REMOVE DEFAULT BACKGROUNDS
-   ========================================================= */
-
-[class*="appMount"],
+/* remove default discord bg */
 [class*="app_"],
 [class*="bg_"],
 [class*="layer_"],
@@ -100,7 +64,6 @@ body::after {
 [class*="standardSidebarView_"],
 [class*="contentRegion_"],
 [class*="sidebarRegion_"],
-[class*="scroller_"],
 [class*="privateChannels_"],
 [class*="messagesWrapper_"],
 [class*="chatContent_"],
@@ -109,88 +72,53 @@ body::after {
   background-color: transparent !important;
 }
 
-#app-mount > *,
-.appMount-2yBXZl,
-.app-2CXKsg,
-.bg-1QIAus,
-.layer-86YKbF,
-.base-2jDfDU {
-  position: relative !important;
-  z-index: 0 !important;
-}
-
-/* =========================================================
+/* =========================
    PANELS
-   ========================================================= */
+   ========================= */
 
-.sidebar-1tnWFu,
-.container-1NXEtd,
-.chat-2ZfjoI,
-.container-ZMc96U,
-.members-3WRCEx,
-.membersWrap-3NUR2t,
-.panels-3wFtMD,
-.container-2o3qEW,
-.content-1jQy2l,
-.container-1eFtFS,
-.applicationStore-2nk7Lo,
-.pageWrapper-2PwDoS,
-.scroller-22Maiq,
-.nowPlayingColumn-1eCBCN,
-.peopleColumn-1wMU14,
-.standardSidebarView-E9Pc3j,
-.contentRegion-3HkfJJ,
-.sidebarRegion-1VBisG,
-.form-3gdLxP,
-.container__2637a,
-.contentRegionScroller__86c79,
-.sidebarRegionScroller__1fa7e {
+[class*="sidebar_"],
+[class*="chat_"],
+[class*="container_"],
+[class*="membersWrap_"],
+[class*="members_"],
+[class*="peopleColumn_"],
+[class*="nowPlayingColumn_"],
+[class*="standardSidebarView_"],
+[class*="contentRegion_"],
+[class*="sidebarRegion_"],
+[class*="pageWrapper_"],
+[class*="applicationStore_"] {
   background: linear-gradient(
     180deg,
     var(--red-faint),
     var(--red-faint-2)
   ) !important;
-  backdrop-filter: blur(6px) saturate(106%) !important;
-  -webkit-backdrop-filter: blur(6px) saturate(106%) !important;
   border: 1px solid var(--panel-border) !important;
-  box-shadow:
-    0 0 12px var(--panel-shadow),
-    0 0 8px rgba(85, 0, 0, 0.06) !important;
+  box-shadow: 0 0 10px var(--panel-shadow) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
 }
 
-/* =========================================================
-   TOP BARS
-   ========================================================= */
+/* =========================
+   TOP BAR
+   ========================= */
 
-.title-31SJ6t,
-.header-3OsQeK,
-.children-3xh0VB,
-.container-ZMc96U.themed-Hp1KC_ {
+[class*="title_"],
+[class*="header_"],
+[class*="themed_"] {
   background: rgba(95, 18, 18, 0.14) !important;
-  backdrop-filter: blur(5px) !important;
-  -webkit-backdrop-filter: blur(5px) !important;
   border-bottom: 1px solid rgba(170, 70, 70, 0.10) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
 }
 
-/* =========================================================
-   CHAT-ONLY BLUR
-   ========================================================= */
-
-.chatContent-3KubbW,
-.messagesWrapper-RpOMA3 {
-  backdrop-filter: blur(1px) !important;
-  -webkit-backdrop-filter: blur(1px) !important;
-  background: transparent !important;
-}
-
-/* =========================================================
+/* =========================
    SERVER BAR
-   ========================================================= */
+   ========================= */
 
-.guilds-2JjMmN,
-.wrapper-1_HaEi,
-.tree-3agP2X,
-.scroller-3X7KbA {
+[class*="guilds_"],
+[class*="wrapper_"],
+[class*="tree_"] {
   background: linear-gradient(
     180deg,
     var(--deep-ui-red),
@@ -199,82 +127,54 @@ body::after {
   border-right: 1px solid rgba(120, 35, 35, 0.14) !important;
 }
 
-.itemsContainer_ef3116,
-.stack_dbd263 {
-  background: transparent !important;
-}
-
-/* =========================================================
+/* =========================
    TEXT
-   ========================================================= */
+   ========================= */
 
-.defaultColor-1EVLSt,
-.markup-eYLPri,
-.contents-3ca1mk,
-.topic-11NuQZ,
-.subtitle-3PyFgf {
+[class*="defaultColor"],
+[class*="markup"],
+[class*="contents"],
+[class*="topic"],
+[class*="subtitle"] {
   color: var(--text-main) !important;
 }
 
-.description-22d6ux,
-.text-sm-normal-AEQz4v,
-.text-xs-normal-3SiVjE,
-.channelInfo-3jN1ay,
-.repliedTextPreview-1bvxun {
+[class*="description"],
+[class*="text-sm-normal"],
+[class*="text-xs-normal"],
+[class*="channelInfo"],
+[class*="repliedTextPreview"] {
   color: var(--text-muted) !important;
 }
 
 a,
-.anchor-1MIwyf,
-.icon-2xnN2Y,
-.icon-1Y-Gpt {
+[class*="anchor"],
+[class*="icon"] {
   color: var(--red-mid) !important;
 }
 
-/* =========================================================
-   NAMES - FIXED
-   ========================================================= */
+/* =========================
+   NAMES
+   ========================= */
 
 [class*="username"],
 [class*="name"],
 [class*="nickname"],
 [class*="headerText"],
-[class*="userTag"],
-[class*="member"] [class*="name"],
-[class*="layout"] [class*="name"],
-[class*="memberInner"] [class*="name"],
-[class*="title"] [class*="name"] {
+[class*="userTag"] {
   color: var(--name-crimson) !important;
   text-shadow:
     0 1px 0 var(--name-shadow),
     0 0 4px rgba(0, 0, 0, 0.20) !important;
 }
 
-.username-h_Y3Us,
-.username-1A8OIy,
-.name-3Uvkvr,
-.title-17SveM,
-.headerText-2z4IhQ,
-.nickname-3P1RuO,
-.memberInner-2CPc3V,
-.member-2gU6Ar .name-3Vmqxm,
-.layout-1qmrhw .name-3Vmqxm,
-.markup-eYLPri strong {
-  color: var(--name-crimson) !important;
-  text-shadow:
-    0 1px 0 var(--name-shadow),
-    0 0 4px rgba(0, 0, 0, 0.20) !important;
-}
-
-.modeSelected-3DmyhH .name-3Uvkvr,
-.interactiveSelected-29CP8y .name-3Uvkvr,
-.selected-1Drb7Z .name-3Uvkvr,
 [class*="selected"] [class*="name"],
 [class*="interactiveSelected"] [class*="name"],
 [class*="modeSelected"] [class*="name"] {
   color: var(--name-crimson-2) !important;
 }
 
+/* preserve role colors but darken slightly */
 span[style*="color"] {
   filter: brightness(0.88) saturate(1.00) !important;
   text-shadow:
@@ -282,60 +182,37 @@ span[style*="color"] {
     0 0 3px rgba(0, 0, 0, 0.10) !important;
 }
 
-/* =========================================================
-   SELECTED / HOVERED ITEMS
-   ========================================================= */
+/* =========================
+   HOVER / SELECT
+   ========================= */
 
-.modeSelected-3DmyhH,
-.interactiveSelected-29CP8y,
-.selected-1Drb7Z,
-[class*="selected"],
 [class*="modeSelected"],
-[class*="interactiveSelected"] {
+[class*="interactiveSelected"],
+[class*="selected"] {
   background: linear-gradient(
     90deg,
     rgba(80, 8, 8, 0.24),
     rgba(45, 4, 4, 0.14)
   ) !important;
   border-left: 2px solid var(--red-dark) !important;
-  box-shadow:
-    0 0 8px rgba(0, 0, 0, 0.18),
-    0 0 8px rgba(100, 0, 0, 0.08) !important;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.18) !important;
 }
 
-.channel-1Shao0:hover,
-.clickable-28SzVr:hover,
-.interactive-1vLZ_I:hover {
-  background: rgba(65, 8, 8, 0.14) !important;
-}
-
-/* =========================================================
-   HOVER GLOW
-   ========================================================= */
-
+[class*="channel_"]:hover,
+[class*="clickable_"]:hover,
+[class*="interactive_"]:hover,
+[class*="member_"]:hover,
+[class*="layout_"]:hover,
 button:hover,
-[role="button"]:hover,
-.clickable-28SzVr:hover,
-.channel-1Shao0:hover,
-.member-2gU6Ar:hover,
-.layout-1qmrhw:hover,
-.wrapper-NhbLHG:hover,
-.interactive-1vLZ_I:hover,
-.item-2LIpTv:hover,
-.wrapper-28eC3z:hover,
-.childWrapper-1j_1ub:hover,
-.listItemWrapper__91816:hover,
-.link__95dc0:hover {
-  box-shadow:
-    0 0 0 1px rgba(0, 0, 0, 0.10),
-    0 0 10px rgba(0, 0, 0, 0.24),
-    0 0 16px rgba(0, 0, 0, 0.12) !important;
-  transition:
-    box-shadow 0.16s ease,
-    background 0.16s ease !important;
+[role="button"]:hover {
+  background: rgba(65, 8, 8, 0.14) !important;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.18) !important;
 }
 
-.message-2CShn3:hover,
+/* =========================
+   MESSAGES
+   ========================= */
+
 [class*="message"]:hover {
   background: linear-gradient(
     90deg,
@@ -344,15 +221,15 @@ button:hover,
   ) !important;
   box-shadow:
     inset 2px 0 0 rgba(0, 0, 0, 0.34),
-    0 0 10px rgba(0, 0, 0, 0.14) !important;
+    0 0 8px rgba(0, 0, 0, 0.12) !important;
 }
 
-/* =========================================================
+/* =========================
    BUTTONS
-   ========================================================= */
+   ========================= */
 
-.button-12Fmur,
-.lookFilled-yCfaCM {
+[class*="lookFilled"],
+[class*="button_"] {
   background: linear-gradient(
     180deg,
     rgba(105, 16, 16, 0.96),
@@ -362,8 +239,8 @@ button:hover,
   border: 1px solid rgba(150, 50, 50, 0.18) !important;
 }
 
-.button-12Fmur:hover,
-.lookFilled-yCfaCM:hover {
+[class*="lookFilled"]:hover,
+[class*="button_"]:hover {
   background: linear-gradient(
     180deg,
     rgba(118, 18, 18, 0.98),
@@ -371,30 +248,18 @@ button:hover,
   ) !important;
 }
 
-/* =========================================================
-   INPUT AREA - KEEP THE GOOD RED WRITEBOX
-   ========================================================= */
+/* =========================
+   WRITE BOX
+   ========================= */
 
-.channelTextArea-1FufC0,
-.scrollableContainer-15eg7h,
-.themedBackground-1aP0xJ,
-.form-3gdLxP:before,
-.base-3bcbY3,
 [class*="channelTextArea"],
 [class*="scrollableContainer"],
-[class*="themedBackground"],
-[class*="attachButtonInner"],
-[class*="inner"] {
+[class*="themedBackground"] {
   background: linear-gradient(
     180deg,
     var(--deep-ui-red),
     var(--deep-ui-red-2)
   ) !important;
-  border-color: rgba(120, 35, 35, 0.22) !important;
-}
-
-.channelTextArea-1FufC0,
-[class*="channelTextArea"] {
   border: 1px solid rgba(120, 35, 35, 0.22) !important;
   box-shadow:
     0 0 0 1px rgba(0, 0, 0, 0.24),
@@ -402,9 +267,6 @@ button:hover,
   border-radius: 12px !important;
 }
 
-.textArea__74543,
-.textAreaSlate__8f5a9,
-.editor__66464,
 [class*="textArea"],
 [class*="editor"],
 [class*="slateTextArea"],
@@ -413,23 +275,6 @@ button:hover,
   background: transparent !important;
 }
 
-.channelTextArea-1FufC0 > div,
-.scrollableContainer-15eg7h > div,
-[class*="channelTextArea"] > div,
-[class*="scrollableContainer"] > div,
-[class*="editor"] > div,
-[class*="textArea"] > div {
-  background: transparent !important;
-}
-
-[class*="channelTextArea"] button,
-[class*="channelTextArea"] [role="button"],
-.attachButton-_ACFSu,
-.buttonContainer-1sjtPU {
-  background: transparent !important;
-}
-
-.channelTextArea-1FufC0:focus-within,
 [class*="channelTextArea"]:focus-within {
   border: 1px solid rgba(160, 40, 40, 0.34) !important;
   box-shadow:
@@ -437,17 +282,14 @@ button:hover,
     0 0 14px rgba(0, 0, 0, 0.28) !important;
 }
 
-.placeholder-1rCBhr,
-.slateTextArea-27tjG0,
-.fontSize16Padding-XoMpjI,
 [class*="placeholder"],
 [class*="slateTextArea"] {
   color: #e9dcdc !important;
 }
 
-/* =========================================================
+/* =========================
    SCROLLBAR
-   ========================================================= */
+   ========================= */
 
 ::-webkit-scrollbar {
   width: 6px !important;
