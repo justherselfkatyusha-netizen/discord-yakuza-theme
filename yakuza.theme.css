@@ -1,7 +1,7 @@
 /**
  * @name Yakuza Theme Fixed
  * @author Katyusha
- * @version 2.0.0
+ * @version 2.1.0
  * @description Stable red dragon Discord theme
  */
 
@@ -43,9 +43,27 @@ body,
 }
 
 #app-mount {
+  position: relative !important;
+  isolation: isolate !important;
+  background: transparent !important;
+}
+
+/* FORCE THE DRAGON BACKGROUND TO ACTUALLY SHOW */
+#app-mount::before {
+  content: "";
+  position: fixed;
+  inset: 0;
   background:
     linear-gradient(rgba(0, 0, 0, 0.30), rgba(0, 0, 0, 0.65)),
-    var(--bg-image) center / cover no-repeat !important;
+    var(--bg-image) center / cover no-repeat;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* keep app content above background */
+#app-mount > * {
+  position: relative !important;
+  z-index: 1 !important;
 }
 
 /* remove default discord bg */
@@ -70,6 +88,14 @@ body,
 [class*="pageWrapper_"],
 [class*="applicationStore_"] {
   background-color: transparent !important;
+  background: transparent !important;
+}
+
+/* extra anti-gray insurance */
+[class*="bg_"],
+[class*="layer_"],
+[class*="base_"] {
+  background: transparent !important;
 }
 
 /* =========================
@@ -272,6 +298,13 @@ button:hover,
 [class*="slateTextArea"],
 [class*="placeholder"],
 [class*="input"] {
+  background: transparent !important;
+}
+
+[class*="channelTextArea"] > div,
+[class*="scrollableContainer"] > div,
+[class*="editor"] > div,
+[class*="textArea"] > div {
   background: transparent !important;
 }
 
