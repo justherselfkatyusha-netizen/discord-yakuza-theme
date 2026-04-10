@@ -1,8 +1,8 @@
 /**
- * @name Yakuza Theme Fixed
+ * @name Yakuza Theme Clean Fixed
  * @author Katyusha
- * @version 2.1.0
- * @description Stable red dragon Discord theme
+ * @version 2.2.0
+ * @description Stable red dragon Discord theme - cleaner layout
  */
 
 :root {
@@ -14,21 +14,19 @@
   --red-dark: #5e0d0d;
   --red-mid: #741414;
 
-  --red-faint: rgba(110, 16, 16, 0.10);
-  --red-faint-2: rgba(130, 20, 20, 0.14);
+  --glass-soft: rgba(90, 10, 10, 0.10);
+  --glass-soft-2: rgba(120, 18, 18, 0.13);
+  --glass-sidebar: rgba(55, 6, 6, 0.32);
+  --glass-chatbar: rgba(28, 3, 3, 0.92);
+  --glass-server: rgba(28, 3, 3, 0.90);
 
-  --panel-border: rgba(170, 60, 60, 0.14);
-  --panel-shadow: rgba(0, 0, 0, 0.22);
-
+  --panel-border: rgba(170, 60, 60, 0.10);
   --text-main: #f2ebeb;
   --text-muted: #ccbaba;
 
-  --deep-ui-red: rgba(28, 3, 3, 0.94);
-  --deep-ui-red-2: rgba(40, 5, 5, 0.90);
-
   --name-crimson: #c78f8f;
   --name-crimson-2: #e2b0b0;
-  --name-shadow: rgba(0, 0, 0, 0.78);
+  --name-shadow: rgba(0, 0, 0, 0.72);
 }
 
 /* =========================
@@ -48,25 +46,23 @@ body,
   background: transparent !important;
 }
 
-/* FORCE THE DRAGON BACKGROUND TO ACTUALLY SHOW */
 #app-mount::before {
   content: "";
   position: fixed;
   inset: 0;
   background:
-    linear-gradient(rgba(0, 0, 0, 0.30), rgba(0, 0, 0, 0.65)),
+    linear-gradient(rgba(0, 0, 0, 0.22), rgba(0, 0, 0, 0.48)),
     var(--bg-image) center / cover no-repeat;
   pointer-events: none;
   z-index: 0;
 }
 
-/* keep app content above background */
 #app-mount > * {
   position: relative !important;
   z-index: 1 !important;
 }
 
-/* remove default discord bg */
+/* remove ugly default gray */
 [class*="app_"],
 [class*="bg_"],
 [class*="layer_"],
@@ -86,71 +82,211 @@ body,
 [class*="messagesWrapper_"],
 [class*="chatContent_"],
 [class*="pageWrapper_"],
-[class*="applicationStore_"] {
+[class*="applicationStore_"],
+[class*="scroller_"] {
+  background: transparent !important;
   background-color: transparent !important;
-  background: transparent !important;
-}
-
-/* extra anti-gray insurance */
-[class*="bg_"],
-[class*="layer_"],
-[class*="base_"] {
-  background: transparent !important;
 }
 
 /* =========================
-   PANELS
+   LEFT SIDES
    ========================= */
 
-[class*="sidebar_"],
-[class*="chat_"],
-[class*="container_"],
-[class*="membersWrap_"],
-[class*="members_"],
-[class*="peopleColumn_"],
-[class*="nowPlayingColumn_"],
-[class*="standardSidebarView_"],
-[class*="contentRegion_"],
-[class*="sidebarRegion_"],
-[class*="pageWrapper_"],
-[class*="applicationStore_"] {
+/* server bar */
+[class*="guilds_"] {
   background: linear-gradient(
     180deg,
-    var(--red-faint),
-    var(--red-faint-2)
+    rgba(35, 4, 4, 0.88),
+    rgba(24, 2, 2, 0.88)
   ) !important;
-  border: 1px solid var(--panel-border) !important;
-  box-shadow: 0 0 10px var(--panel-shadow) !important;
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
+  border-right: 1px solid rgba(120, 35, 35, 0.10) !important;
+}
+
+/* channels / dms list side */
+[class*="sidebar_"],
+[class*="privateChannels_"],
+[class*="scroller_"][class*="thin_"] {
+  background: linear-gradient(
+    180deg,
+    rgba(70, 8, 8, 0.22),
+    rgba(40, 4, 4, 0.18)
+  ) !important;
+  border-right: 1px solid rgba(120, 35, 35, 0.08) !important;
+}
+
+/* bottom profile bar */
+[class*="panels_"] {
+  background: linear-gradient(
+    180deg,
+    rgba(30, 4, 4, 0.86),
+    rgba(18, 2, 2, 0.86)
+  ) !important;
+  border-top: 1px solid rgba(120, 35, 35, 0.12) !important;
 }
 
 /* =========================
-   TOP BAR
+   MAIN CHAT AREA
    ========================= */
 
+[class*="chat_"],
+[class*="chatContent_"],
+[class*="messagesWrapper_"],
+[class*="content_"],
+[class*="container_"] {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* top bar */
 [class*="title_"],
 [class*="header_"],
 [class*="themed_"] {
-  background: rgba(95, 18, 18, 0.14) !important;
-  border-bottom: 1px solid rgba(170, 70, 70, 0.10) !important;
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
+  background: rgba(75, 10, 10, 0.14) !important;
+  border-bottom: 1px solid rgba(170, 70, 70, 0.08) !important;
+  box-shadow: none !important;
+}
+
+/* member list on right */
+[class*="membersWrap_"],
+[class*="members_"] {
+  background: linear-gradient(
+    180deg,
+    rgba(60, 8, 8, 0.22),
+    rgba(34, 4, 4, 0.16)
+  ) !important;
+  border-left: 1px solid rgba(120, 35, 35, 0.08) !important;
 }
 
 /* =========================
-   SERVER BAR
+   REMOVE THE BOXED/BROKEN LOOK
    ========================= */
 
-[class*="guilds_"],
-[class*="wrapper_"],
-[class*="tree_"] {
+/* dm rows / channel rows */
+[class*="link_"],
+[class*="interactive_"],
+[class*="layout_"],
+[class*="channel_"],
+[class*="clickable_"] {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 8px !important;
+}
+
+/* only subtle hover */
+[class*="link_"]:hover,
+[class*="interactive_"]:hover,
+[class*="layout_"]:hover,
+[class*="channel_"]:hover,
+[class*="clickable_"]:hover,
+button:hover,
+[role="button"]:hover {
+  background: rgba(90, 8, 8, 0.14) !important;
+  box-shadow: none !important;
+}
+
+/* selected items */
+[class*="modeSelected"],
+[class*="interactiveSelected"],
+[class*="selected"] {
+  background: linear-gradient(
+    90deg,
+    rgba(95, 12, 12, 0.22),
+    rgba(50, 5, 5, 0.10)
+  ) !important;
+  border-left: 2px solid rgba(160, 40, 40, 0.55) !important;
+  box-shadow: none !important;
+}
+
+/* =========================
+   MESSAGES - CLEAN, NOT BOXED
+   ========================= */
+
+[class*="messageListItem_"],
+[class*="message_"] {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+[class*="message_"]:hover {
+  background: rgba(80, 0, 0, 0.07) !important;
+  box-shadow: inset 2px 0 0 rgba(120, 20, 20, 0.18) !important;
+}
+
+/* embeds / replies / code blocks keep darker */
+blockquote,
+pre,
+[class*="embedFull_"],
+[class*="wrapperAudio_"],
+[class*="repliedMessage_"],
+[class*="markupRtl_"] pre,
+[class*="markup_"] pre {
+  background: rgba(20, 2, 2, 0.72) !important;
+  border: 1px solid rgba(120, 35, 35, 0.14) !important;
+  box-shadow: none !important;
+}
+
+/* =========================
+   SEARCH / INPUTS
+   ========================= */
+
+input,
+textarea,
+[class*="input_"],
+[class*="searchBar_"] {
+  background: rgba(35, 4, 4, 0.82) !important;
+  border: 1px solid rgba(120, 35, 35, 0.16) !important;
+  color: var(--text-main) !important;
+  box-shadow: none !important;
+}
+
+/* write box */
+[class*="channelTextArea_"],
+[class*="channelTextArea"],
+[class*="scrollableContainer_"],
+[class*="scrollableContainer"],
+[class*="themedBackground_"],
+[class*="themedBackground"] {
   background: linear-gradient(
     180deg,
-    var(--deep-ui-red),
-    var(--deep-ui-red-2)
+    rgba(32, 4, 4, 0.94),
+    rgba(20, 2, 2, 0.94)
   ) !important;
-  border-right: 1px solid rgba(120, 35, 35, 0.14) !important;
+  border: 1px solid rgba(120, 35, 35, 0.18) !important;
+  border-radius: 14px !important;
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.18),
+    0 0 10px rgba(0, 0, 0, 0.18) !important;
+}
+
+[class*="textArea"],
+[class*="editor"],
+[class*="slateTextArea"],
+[class*="placeholder"],
+[class*="input"] {
+  background: transparent !important;
+  color: var(--text-main) !important;
+}
+
+[class*="channelTextArea"]:focus-within {
+  border: 1px solid rgba(160, 40, 40, 0.28) !important;
+  box-shadow:
+    0 0 0 1px rgba(120, 20, 20, 0.24),
+    0 0 12px rgba(0, 0, 0, 0.22) !important;
+}
+
+[class*="placeholder"],
+[class*="slateTextArea"] {
+  color: #ead7d7 !important;
+}
+
+/* buttons inside input */
+[class*="channelTextArea"] button,
+[class*="channelTextArea"] [role="button"] {
+  background: transparent !important;
+  box-shadow: none !important;
 }
 
 /* =========================
@@ -191,7 +327,7 @@ a,
   color: var(--name-crimson) !important;
   text-shadow:
     0 1px 0 var(--name-shadow),
-    0 0 4px rgba(0, 0, 0, 0.20) !important;
+    0 0 4px rgba(0, 0, 0, 0.16) !important;
 }
 
 [class*="selected"] [class*="name"],
@@ -200,54 +336,11 @@ a,
   color: var(--name-crimson-2) !important;
 }
 
-/* preserve role colors but darken slightly */
 span[style*="color"] {
   filter: brightness(0.88) saturate(1.00) !important;
   text-shadow:
-    0 1px 0 rgba(0, 0, 0, 0.60),
-    0 0 3px rgba(0, 0, 0, 0.10) !important;
-}
-
-/* =========================
-   HOVER / SELECT
-   ========================= */
-
-[class*="modeSelected"],
-[class*="interactiveSelected"],
-[class*="selected"] {
-  background: linear-gradient(
-    90deg,
-    rgba(80, 8, 8, 0.24),
-    rgba(45, 4, 4, 0.14)
-  ) !important;
-  border-left: 2px solid var(--red-dark) !important;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.18) !important;
-}
-
-[class*="channel_"]:hover,
-[class*="clickable_"]:hover,
-[class*="interactive_"]:hover,
-[class*="member_"]:hover,
-[class*="layout_"]:hover,
-button:hover,
-[role="button"]:hover {
-  background: rgba(65, 8, 8, 0.14) !important;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.18) !important;
-}
-
-/* =========================
-   MESSAGES
-   ========================= */
-
-[class*="message"]:hover {
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0.02),
-    rgba(90, 0, 0, 0.04)
-  ) !important;
-  box-shadow:
-    inset 2px 0 0 rgba(0, 0, 0, 0.34),
-    0 0 8px rgba(0, 0, 0, 0.12) !important;
+    0 1px 0 rgba(0, 0, 0, 0.55),
+    0 0 3px rgba(0, 0, 0, 0.08) !important;
 }
 
 /* =========================
@@ -258,70 +351,25 @@ button:hover,
 [class*="button_"] {
   background: linear-gradient(
     180deg,
-    rgba(105, 16, 16, 0.96),
-    rgba(58, 7, 7, 0.96)
+    rgba(105, 16, 16, 0.94),
+    rgba(58, 7, 7, 0.94)
   ) !important;
   color: #f5efef !important;
-  border: 1px solid rgba(150, 50, 50, 0.18) !important;
+  border: 1px solid rgba(150, 50, 50, 0.14) !important;
+  box-shadow: none !important;
 }
 
 [class*="lookFilled"]:hover,
 [class*="button_"]:hover {
   background: linear-gradient(
     180deg,
-    rgba(118, 18, 18, 0.98),
-    rgba(68, 8, 8, 0.98)
+    rgba(118, 18, 18, 0.96),
+    rgba(68, 8, 8, 0.96)
   ) !important;
 }
 
 /* =========================
-   WRITE BOX
-   ========================= */
-
-[class*="channelTextArea"],
-[class*="scrollableContainer"],
-[class*="themedBackground"] {
-  background: linear-gradient(
-    180deg,
-    var(--deep-ui-red),
-    var(--deep-ui-red-2)
-  ) !important;
-  border: 1px solid rgba(120, 35, 35, 0.22) !important;
-  box-shadow:
-    0 0 0 1px rgba(0, 0, 0, 0.24),
-    0 0 12px rgba(0, 0, 0, 0.24) !important;
-  border-radius: 12px !important;
-}
-
-[class*="textArea"],
-[class*="editor"],
-[class*="slateTextArea"],
-[class*="placeholder"],
-[class*="input"] {
-  background: transparent !important;
-}
-
-[class*="channelTextArea"] > div,
-[class*="scrollableContainer"] > div,
-[class*="editor"] > div,
-[class*="textArea"] > div {
-  background: transparent !important;
-}
-
-[class*="channelTextArea"]:focus-within {
-  border: 1px solid rgba(160, 40, 40, 0.34) !important;
-  box-shadow:
-    0 0 0 1px rgba(120, 20, 20, 0.36),
-    0 0 14px rgba(0, 0, 0, 0.28) !important;
-}
-
-[class*="placeholder"],
-[class*="slateTextArea"] {
-  color: #e9dcdc !important;
-}
-
-/* =========================
-   SCROLLBAR
+   SCROLLBARS
    ========================= */
 
 ::-webkit-scrollbar {
@@ -348,11 +396,11 @@ button:hover,
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(25, 0, 0, 0.18) !important;
+  background: rgba(25, 0, 0, 0.14) !important;
   border-radius: 999px !important;
 }
 
 * {
   scrollbar-width: thin !important;
-  scrollbar-color: var(--red-darker) rgba(25, 0, 0, 0.18) !important;
+  scrollbar-color: var(--red-darker) rgba(25, 0, 0, 0.14) !important;
 }
